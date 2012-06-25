@@ -12,6 +12,8 @@ PKG_OPTIONS_LEGACY_OPTS+=	v2:http2
 
 PLIST_VARS+=		naxsi perl uwsgi
 
+PKG_SUPPORTED_OPTIONS+=	passenger
+
 .include "../../mk/bsd.options.mk"
 
 # documentation says naxsi must be the first module
@@ -208,6 +210,24 @@ CONFIGURE_ARGS+=	--with-http_slice_module
 
 .if !empty(PKG_OPTIONS:Mstatus)
 CONFIGURE_ARGS+=	--with-http_stub_status_module
+.endif
+
+.if !empty(PKG_OPTIONS:Mpassenger)
+PKGNAME=		${DISTNAME:S/nginx/nginx-passenger/}
+
+DEPENDS+=		${RUBY_PKGPREFIX}-passenger-[0-9]*:../../wip/ruby-passenger
+
+CONFIGURE_ARGS+=	--add-module=${WRKDIR}/passenger/ext/nginx
+
+MESSAGE_SRC=		MESSAGE
+MESSAGE_SRC+=		MESSAGE.passenger
+
+.include "../../wip/ruby-passenger/inplace.mk"
+
+pre-configure: build-passenger-files
+
+build-passenger-files:
+	cd ${WRKDIR}/passenger/build && ${RAKE} nginx:clean nginx
 .endif
 
 .if !empty(PKG_OPTIONS:Mperl)
