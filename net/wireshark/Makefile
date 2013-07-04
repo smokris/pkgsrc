@@ -15,6 +15,7 @@ CONFLICTS+=		ethereal-[0-9]*
 
 USE_LANGUAGES=		c c++
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		lib
 USE_TOOLS+=		gmake perl pkg-config yacc lex
 GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--enable-static=no
