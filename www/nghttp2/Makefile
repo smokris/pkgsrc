@@ -14,6 +14,7 @@ LICENSE=	mit
 
 USE_LANGUAGES=		c c++14
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		lib
 USE_TOOLS+=		gmake pkg-config
 GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--disable-examples
