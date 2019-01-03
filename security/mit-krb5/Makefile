@@ -11,7 +11,8 @@ COMMENT=	MIT Kerberos 5 authentication system
 
 MAKE_JOBS_SAFE=		no
 
-CONFIGURE_DIRS=	src
+WRKSRC=			${WRKDIR}/${DISTNAME}/src
+
 BUILD_TARGET=	generate-files-mac all
 
 .include "../../mk/bsd.prefs.mk"
@@ -42,7 +43,6 @@ CONFIGURE_ARGS+=	--enable-shared
 CONFIGURE_ARGS+=	--enable-dns-for-realm
 CONFIGURE_ARGS+=	--enable-kdc-replay-cache
 CONFIGURE_ARGS+=	--disable-thread-support
-CONFIGURE_ARGS+=	--without-system-verto
 CONFIGURE_ARGS+=	--without-tcl
 CONFIGURE_ARGS+=	--enable-pkgsrc-libtool
 CONFIGURE_ARGS+=	--without-system-verto
@@ -52,8 +52,7 @@ CONFIGURE_ENV+=		DEFKTNAME=FILE:${PKG_SYSCONFDIR}/krb5.keytab
 MAKE_ENV+=		ROOT_USER=${ROOT_USER}
 LIBS.SunOS=		-lrt
 
-PATCH_ARGS=		-d ${WRKSRC}/src -p0
-PATCH_DIST_ARGS=	-d ${WRKSRC} -p1
+PATCH_DIST_ARGS=	-d ${WRKSRC} -p2
 
 INFO_FILES=		YES
 
