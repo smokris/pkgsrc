@@ -159,6 +159,8 @@ MAKE_ENV+=		lt_cv_path_SED=${TOOLS_SED}
 
 # Determine whether to use binutils
 .if ${OPSYS} == "SunOS"
+# Disable --as-needed as it pulls in libgcc_s as a dependency.
+MAKE_ENV+=		gcc_cv_ld_as_needed=no
 .  if exists(/usr/sfw/bin/gobjdump)
 CONFIGURE_ENV+=		OBJDUMP=/usr/sfw/bin/gobjdump
 .  endif
