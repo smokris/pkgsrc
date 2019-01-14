@@ -93,6 +93,11 @@ do-install:
 	${RUN} cd ${WRKDIR}; [ ! -d pkg ] || ${PAX} -rw src pkg ${DESTDIR}${PREFIX}/gopkg
 .endif
 
+# Include go-dep.mk last as it hooks into post-extract
+.if defined(GO_DEPS)
+.  include "../../lang/go/go-dep.mk"
+.endif
+
 _VARGROUPS+=		go
 _PKG_VARS.go=		GO_SRCPATH GO_DIST_BASE GO_BUILD_PATTERN
 _USER_VARS.go=		GO_VERSION_DEFAULT
