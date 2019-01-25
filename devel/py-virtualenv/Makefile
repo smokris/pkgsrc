@@ -27,7 +27,7 @@ REPLACE_PYTHON=	virtualenv.py
 
 SUBST_CLASSES+=		arch
 SUBST_STAGE.arch=	pre-configure
-SUBST_FILES.arch=	virtualenv.py
+SUBST_FILES.arch=	src/virtualenv.py
 .if !empty(MULTIARCH:M[Yy][Ee][Ss])
 SUBST_SED.arch=		-e 's|@BINARCHSUFFIX32@|${BINARCHSUFFIX.32:S/\///}|'
 SUBST_SED.arch+=	-e 's|@BINARCHSUFFIX64@|${BINARCHSUFFIX.64:S/\///}|'

@@ -2,9 +2,9 @@ $NetBSD$
 
 Add basic multiarch support to virtualenv. Creates copies of real binaries (in addition to the abiexec wrapper.)
 
---- virtualenv.py.orig	2016-11-16 02:39:30.000000000 +0000
-+++ virtualenv.py
-@@ -1230,6 +1230,20 @@ def install_python(home_dir, lib_dir, in
+--- src/virtualenv.py.orig	2018-10-31 15:20:24.000000000 +0000
++++ src/virtualenv.py
+@@ -1316,6 +1316,20 @@ def install_python(home_dir, lib_dir, in
          executable = sys.executable
          shutil.copyfile(executable, py_executable)
          make_exe(py_executable)
@@ -23,5 +23,5 @@ Add basic multiarch support to virtualenv. Creates copies of real binaries (in a
 +            make_exe(py_executable32)
 +            make_exe(py_executable64)
          if is_win or is_cygwin:
-             pythonw = os.path.join(os.path.dirname(sys.executable), 'pythonw.exe')
+             pythonw = os.path.join(os.path.dirname(sys.executable), "pythonw.exe")
              if os.path.exists(pythonw):
