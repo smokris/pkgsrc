@@ -1,39 +1,26 @@
 $NetBSD: patch-CMakeLists.txt,v 1.2 2014/07/02 03:41:51 jnemeth Exp $
 
---- CMakeLists.txt.orig	2014-03-26 21:20:55.000000000 +0000
+Use pkgsrc layout.
+
+--- CMakeLists.txt.orig	2018-07-21 21:14:15.000000000 +0000
 +++ CMakeLists.txt
-@@ -257,6 +257,8 @@ ENDIF()
+@@ -501,8 +501,8 @@ cmake/sql.*\\\\.c$
+ #------------ Installation ---------------------------
  
- MESSAGE(STATUS "Installation library subdir: ${LIB_SUBDIR}")
  
-+SET(DOC_SUBDIR "share/doc/mysql-connector-odbc")
-+
- INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR})
+-INSTALL(FILES LICENSE.txt   DESTINATION .)
+-INSTALL(FILES README.txt    DESTINATION .)
++INSTALL(FILES LICENSE.txt   DESTINATION "share/doc/mysql-connector-odbc")
++INSTALL(FILES README.txt    DESTINATION "share/doc/mysql-connector-odbc")
  
- ADD_SUBDIRECTORY(util)
-@@ -382,18 +384,18 @@ IF(WIN32)
+ IF(WIN32)
+ 
+@@ -542,7 +542,7 @@ IF(WIN32)
  
  ELSE(WIN32)
  
 -  INSTALL(FILES ChangeLog    DESTINATION .)
--  INSTALL(FILES README       DESTINATION .)
--  INSTALL(FILES README.debug DESTINATION .)
--  INSTALL(FILES INSTALL      DESTINATION .)
-+  INSTALL(FILES ChangeLog    DESTINATION ${DOC_SUBDIR})
-+  INSTALL(FILES README       DESTINATION ${DOC_SUBDIR})
-+  INSTALL(FILES README.debug DESTINATION ${DOC_SUBDIR})
-+  INSTALL(FILES INSTALL      DESTINATION ${DOC_SUBDIR})
-   IF(EXISTS "${CMAKE_SOURCE_DIR}/COPYING")
--    INSTALL(FILES COPYING       DESTINATION .)
-+    INSTALL(FILES COPYING       DESTINATION ${DOC_SUBDIR})
-   ELSE()
--    INSTALL(FILES LICENSE.mysql DESTINATION .)
-+    INSTALL(FILES LICENSE.mysql DESTINATION ${DOC_SUBDIR})
-   ENDIF()
++  INSTALL(FILES ChangeLog    DESTINATION "share/doc/mysql-connector-odbc")
  
  ENDIF(WIN32)
  
--INSTALL(FILES Licenses_for_Third-Party_Components.txt DESTINATION .)
-+INSTALL(FILES Licenses_for_Third-Party_Components.txt DESTINATION ${DOC_SUBDIR})
- 
- INCLUDE(CPack)
