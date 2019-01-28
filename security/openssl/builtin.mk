@@ -48,7 +48,7 @@ BUILTIN_VERSION.openssl!=						\
 			} else if (i > 26) {				\
 				patchlevel = "a";			\
 			} else {					\
-				patchlevel = substr(alpha,i,1);			\
+				patchlevel = substr(alpha,i,1);		\
 			}						\
 			printf "%s%s%s%s\n",				\
 				major, minor, teeny, patchlevel;	\
