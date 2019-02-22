@@ -1,4 +1,4 @@
-$NetBSD: distinfo,v 1.5.2.1 2019/03/04 16:51:40 bsiegert Exp $
+$NetBSD: distinfo,v 1.6 2019/02/22 01:24:24 taca Exp $
 
 SHA1 (bind-9.12.3-P4.tar.gz) = 883c1513e0c97887db2c57625b1c6ad5f15f8078
 RMD160 (bind-9.12.3-P4.tar.gz) = a5a314a370e53ac2cb3c743c4886b8b538a2bd63
