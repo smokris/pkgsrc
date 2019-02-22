@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.6.2.1 2019/03/04 16:51:35 bsiegert Exp $
+# $NetBSD: Makefile,v 1.7 2019/02/22 01:22:38 taca Exp $
 
 DISTNAME=	bind-${BIND_VERSION}
 PKGNAME=	${DISTNAME:S/-P/pl/}
