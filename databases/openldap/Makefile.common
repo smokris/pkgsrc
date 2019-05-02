@@ -114,6 +114,11 @@ PTH_FDSETSIZE_cmd=							\
 CPPFLAGS+=	-DOPENLDAP_FD_SETSIZE=${PTH_FDSETSIZE_cmd:sh:Q}
 .endif
 
+# OpenLDAP hardcodes this to 4096, disregarding the OS default.
+.if !empty(MACHINE_PLATFORM:MSunOS-*-x86_64)
+CPPFLAGS+=	-DOPENLDAP_FD_SETSIZE=65536
+.endif
+
 MAKE_FLAGS+=		moduledir=${OPENLDAP_MODULEDIR}
 INSTALL_MAKE_FLAGS=	${MAKE_FLAGS} sysconfdir=${EGDIR}
 
