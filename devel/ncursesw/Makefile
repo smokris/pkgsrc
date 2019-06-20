@@ -36,7 +36,7 @@ do-install:
 		${LIBTOOL} --mode=install ${INSTALL_PROGRAM}	\
 		    ${WRKSRC}/lib/lib$${LIB}w.la ${DESTDIR}${PREFIX}/lib${LIBARCHSUFFIX};	\
 	done
-	${INSTALL_DATA} ${WRKSRC}/misc/*.pc ${DESTDIR}${PREFIX}/lib/pkgconfig
+	${INSTALL_DATA} ${WRKSRC}/misc/*.pc ${DESTDIR}${PREFIX}/lib${LIBARCHSUFFIX}/pkgconfig
 
 BUILDLINK_API_DEPENDS.ncurses+=	ncurses-${NC_VERS}{,nb*}
 BUILDLINK_ABI_DEPENDS.ncurses+=	ncurses-${NC_VERS}{,nb*}
