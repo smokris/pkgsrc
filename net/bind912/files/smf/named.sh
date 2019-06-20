@@ -111,7 +111,7 @@ get_config ()
             ;;
         'configuration_file')
             cmdopts="${cmdopts} -c ${value}"
-            checkopts="${checkopts} -t ${value}"
+            checkopts="${checkopts} ${value}"
             configuration_file=${value};
             ;;
         'server')
@@ -201,6 +201,9 @@ case "$method" in
         rndc_config_file=${chroot_dir}${rndc_config_file}
         rndc_key_file=${chroot_dir}${rndc_key_file}
         rndc_cmd_opts="${rndc_cmd_opts} -t ${chroot_dir}"
+    else
+        mkdir -p -m 0770 @VARBASE@/run/named
+        chown ${cmduser}:${cmduser} @VARBASE@/run/named
     fi
 
     # Check if the rndc config file exists.
