@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.204 2018/12/02 11:30:27 tron Exp $
+# $NetBSD: Makefile,v 1.211 2019/06/19 12:05:12 jperkin Exp $
 
-DISTNAME=		mutt-1.11.1
+DISTNAME=		mutt-1.12.1
 CATEGORIES=		mail
 MASTER_SITES=		ftp://ftp.mutt.org/pub/mutt/
 
@@ -8,6 +8,9 @@ MAINTAINER=		tonio@NetBSD.org
 HOMEPAGE=		http://www.mutt.org/
 COMMENT=		Text-based MIME mail client with PGP & S/MIME support
 LICENSE=		gnu-gpl-v2 OR gnu-gpl-v3 # or newer
+
+BUILD_DEPENDS+=		docbook-xsl-[0-9]*:../../textproc/docbook-xsl
+BUILD_DEPENDS+=		lynx-[0-9]*:../../www/lynx
 
 CONFLICTS+=		neomutt-[0-9]*
 
@@ -22,6 +25,7 @@ CONFIGURE_ARGS+=	--without-included-gettext
 CONFIGURE_ARGS+=	--enable-external-dotlock
 CONFIGURE_ARGS+=	--enable-pop
 CONFIGURE_ARGS+=	--enable-imap
+CONFIGURE_ARGS.SunOS+=	--disable-filemonitor
 INFO_FILES=		yes
 
 .if ${OPSYS} == "NetBSD" || ${OPSYS} == "DragonFly" || ${OPSYS} == "FreeBSD" || ${OPSYS} == "OpenBSD"
