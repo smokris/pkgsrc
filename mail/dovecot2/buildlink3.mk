@@ -1,4 +1,4 @@
-# $NetBSD: buildlink3.mk,v 1.29 2018/11/30 18:43:09 adam Exp $
+# $NetBSD: buildlink3.mk,v 1.31 2019/07/03 06:09:22 triaxx Exp $
 
 BUILDLINK_TREE+=	dovecot
 
@@ -14,8 +14,6 @@ pkgbase:=	dovecot
 .include "../../mk/pkg-build-options.mk"
 .if !empty(PKG_BUILD_OPTIONS.dovecot:Mssl)
 .  include "../../security/openssl/buildlink3.mk"
-.elif !empty(PKG_BUILD_OPTIONS.dovecot:Mgnutls)
-.  include "../../security/gnutls/buildlink3.mk"
 .endif
 .include "../../archivers/bzip2/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"
