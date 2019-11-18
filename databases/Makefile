@@ -48,6 +48,7 @@ SUBDIR+=	guile-pg
 SUBDIR+=	hiredis
 SUBDIR+=	hsqldb18
 SUBDIR+=	idzebra
+SUBDIR+=	influxdb
 SUBDIR+=	innotop
 SUBDIR+=	iodbc
 SUBDIR+=	ipa_sdb
