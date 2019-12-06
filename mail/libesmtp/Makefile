@@ -15,7 +15,6 @@ USE_TOOLS+=	gmake
 USE_LIBTOOL=	yes
 GNU_CONFIGURE=	yes
 
-USE_OLD_DES_API=	yes
 CONFIGURE_ARGS+=	--enable-all
 CONFIGURE_ARGS+=	--disable-ntlm
 CONFIGURE_ARGS+=	--disable-isoc

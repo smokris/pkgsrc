@@ -17,7 +17,6 @@ LICENSE=	gnu-gpl-v2
 
 BDB_ACCEPTED=		db4 db5
 USE_LIBTOOL=		yes
-USE_OLD_DES_API=	yes
 USE_TOOLS+=		gmake pkg-config perl:run
 GNU_CONFIGURE=		yes
 

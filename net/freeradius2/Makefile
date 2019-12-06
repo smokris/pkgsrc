@@ -17,7 +17,6 @@ CONFLICTS+=		freeradius<2.0
 USE_TOOLS+=		gmake perl:run
 USE_LANGUAGES+=		c c++
 USE_LIBTOOL=		yes
-USE_OLD_DES_API=	yes
 
 .include "../../mk/bsd.prefs.mk"
 

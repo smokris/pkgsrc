@@ -14,7 +14,6 @@ BUILD_DEPENDS+=		docbook-xsl-[0-9]*:../../textproc/docbook-xsl
 
 GNU_CONFIGURE=		YES
 USE_LIBTOOL=		YES
-USE_OLD_DES_API=	YES
 USE_TOOLS+=		gmake pkg-config
 WRKSRC=			${WRKDIR}/OpenSC-${OPENSC_PKG_VERSION}
 

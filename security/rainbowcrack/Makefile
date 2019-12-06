@@ -17,7 +17,6 @@ BUILD_DIRS=		src
 USE_LANGUAGES=		c c++
 USE_TOOLS+=		patch
 MAKE_FILE=		${FILESDIR}/Makefile
-USE_OLD_DES_API=	yes
 INSTALLATION_DIRS=	bin share/doc/rainbowcrack share/rainbowcrack
 
 pre-patch:

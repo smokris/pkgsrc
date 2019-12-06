@@ -19,7 +19,6 @@ CONFIGURE_ARGS+=	--disable-debug
 CONFIGURE_ARGS+=	--disable-dependency-tracking
 CONFIGURE_ARGS+=	--sysconfdir=${PKG_SYSCONFDIR}
 
-USE_OLD_DES_API=	yes
 TEST_TARGET=		check
 
 PKG_SYSCONFSUBDIR=	openvpn

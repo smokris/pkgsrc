@@ -22,7 +22,6 @@ CONFIGURE_ARGS+=	--enable-https
 
 # needs putwin()
 INCOMPAT_CURSES=	NetBSD-[0-4].*
-USE_OLD_DES_API=	yes
 PTHREAD_OPTS+=		require
 PTHREAD_AUTO_VARS=	yes
 MAKE_ENV+=		MACHINE_ARCH=${MACHINE_ARCH:Q}
