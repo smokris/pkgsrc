@@ -49,5 +49,17 @@ PLIST_SUBST+=		SOEXT=${SOEXT}
 
 PRINT_PLIST_AWK+=	/^lib\/engines/ { gsub(/\.${SOEXT}$$/, ".$${SOEXT}"); }
 
+#
+# Get rid of ridiculous namespace collisions like passwd.1 and just leave the
+# openssl-*.1 style variants.  On a more practical note this avoids creating
+# a conflict with moreutils (ts.1).
+#
+post-install:
+	cd ${DESTDIR}${PREFIX}/${PKGMANDIR}/man1;			\
+	for f in openssl-*; do						\
+		${RM} -f $${f};						\
+		${MV} `${ECHO} $${f} | ${SED} -e 's/openssl-//'` $${f};	\
+	done
+
 .include "../../mk/dlopen.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"
