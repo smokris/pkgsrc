@@ -31,7 +31,5 @@ do-install:
 	${INSTALL_DATA} ${WRKSRC}/libtcpa/License ${DESTDIR}${PREFIX}/share/doc/${PKGBASE}
 	${INSTALL_DATA} ${WRKSRC}/README ${DESTDIR}${PREFIX}/share/doc/${PKGBASE}
 
-BUILDLINK_API_DEPENDS.openssl+=	openssl<1.1
-BUILDLINK_ABI_DEPENDS.openssl+=	openssl<1.1
 .include "../../security/openssl/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

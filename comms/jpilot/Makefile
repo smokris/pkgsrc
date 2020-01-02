@@ -13,7 +13,6 @@ CONFLICTS+=		jpilot-libplugin-[0-9]*
 
 USE_LIBTOOL=		YES
 USE_PKGLOCALEDIR=	YES
-USE_OLD_DES_API=	YES
 USE_TOOLS+=		gmake intltool msgfmt pkg-config
 USE_LANGUAGES+=		c
 

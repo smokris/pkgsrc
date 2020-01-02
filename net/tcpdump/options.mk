@@ -7,7 +7,6 @@ PKG_SUGGESTED_OPTIONS=	ssl
 .include "../../mk/bsd.options.mk"
 
 .if !empty(PKG_OPTIONS:Mssl)
-USE_OLD_DES_API=	yes
 .include "../../security/openssl/buildlink3.mk"
 .else
 CONFIGURE_ARGS+=	--without-crypto
