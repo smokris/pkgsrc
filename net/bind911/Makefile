@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.17 2019/11/21 05:38:21 taca Exp $
+# $NetBSD: Makefile,v 1.21 2020/01/23 08:00:01 taca Exp $
 
 DISTNAME=	bind-${BIND_VERSION}
 PKGNAME=	${DISTNAME:S/-P/pl/}
@@ -6,7 +6,7 @@ CATEGORIES=	net
 MASTER_SITES=	ftp://ftp.isc.org/isc/bind9/${BIND_VERSION}/
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	http://www.isc.org/software/bind/
+HOMEPAGE=	https://www.isc.org/software/bind/
 COMMENT=	Berkeley Internet Name Daemon implementation of DNS, version 9.11
 LICENSE=	mpl-2.0
 
@@ -14,7 +14,7 @@ CONFLICTS+=	host-[0-9]*
 
 MAKE_JOBS_SAFE=	no
 
-BIND_VERSION=	9.11.13
+BIND_VERSION=	9.11.15
 
 .include "../../mk/bsd.prefs.mk"
 
