@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.314 2019/09/23 20:00:07 triaxx Exp $
+# $NetBSD: Makefile,v 1.317 2020/02/11 20:40:27 triaxx Exp $
 
 .include "../../mail/postfix/Makefile.common"
 
@@ -75,5 +75,8 @@ do-install:
 		${DESTDIR}${PREFIX}/sbin/qshape
 	${INSTALL_MAN} ${WRKSRC}/man/man1/qshape.1 \
 		${DESTDIR}${PREFIX}/${PKGMANDIR}/man1
+.for dir in ${POSTFIX_QUEUE_SUBDIR}
+	${RMDIR} ${DESTDIR}${POSTFIX_QUEUE_DIR}/${dir}
+.endfor
 
 .include "../../mk/bsd.pkg.mk"
