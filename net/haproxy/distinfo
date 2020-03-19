@@ -8,4 +8,4 @@ SHA1 (patch-Makefile) = 790242ebde13ac1a9d95a16cba29e30a9bccd57c
 SHA1 (patch-src_cli.c) = 4bc5cf0116df121ac4c3c38b8f962c3a62d536e5
 SHA1 (patch-src_haproxy.c) = badb172013541087d84f03726ea928c6f5634dc3
 SHA1 (patch-src_proto__sockpair.c) = 1f2a318f3b7c74a191774f8bb3511c23401c10ef
-SHA1 (patch-src_wdt.c) = 110300fd97ddcd740ea42726b10a7b1b6236795a
+SHA1 (patch-src_wdt.c) = b1b4715e6d99f4d479c839433d495c913e5926fe
