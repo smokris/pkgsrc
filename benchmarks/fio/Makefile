@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.5 2019/10/08 18:13:32 maya Exp $
+# $NetBSD: Makefile,v 1.7 2020/04/17 17:54:34 wiz Exp $
 
-DISTNAME=	fio-3.16
+DISTNAME=	fio-3.19
 CATEGORIES=	benchmarks
 MASTER_SITES=	http://brick.kernel.dk/snaps/
 
