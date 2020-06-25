@@ -3240,7 +3240,7 @@ ptest_error(Test_env *te, int ofs, const char *msg)
 #else
 #define ULIMIT_M_IS_RSS
 #endif
-#if defined(ULIMIT_M_IS_RSS) && defined(RLIMIT_AS) && (RLIMIT_RSS == RLIMIT_AS)
+#if defined(ULIMIT_M_IS_RSS) && defined(RLIMIT_AS) && (RLIMIT_RSS == RLIMIT_AS) && !defined(__APPLE__)
 #undef ULIMIT_M_IS_RSS
 #endif
 #endif
