@@ -18,7 +18,7 @@ BUILD_MAKE_FLAGS+=	USE_PCRE=1
 ### Use LUA
 ###
 .if !empty(PKG_OPTIONS:Mlua)
-LUA_VERSION_ACCEPTED=	53
+LUA_VERSIONS_ACCEPTED=	53
 .  include "../../lang/lua/luaversion.mk"
 BUILD_MAKE_FLAGS+=	USE_LUA=1
 BUILD_MAKE_FLAGS+=	LUA_LIB_NAME=lua5.3
