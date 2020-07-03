@@ -32,15 +32,26 @@ PRINT_PLIST_AWK+=	/opencl/ { $$0 = "$${PLIST.opencl}" $$0 }
 
 TEST_TARGET=	check
 
+.include "options.mk"
+
+FFTOOLS=	cws2fws graph2dot pktdumper
+FFTOOLS+=	probetest qt-faststart trasher
+
 post-install:
 	${INSTALL_DATA} ${WRKSRC}/doc/*.txt \
 		${DESTDIR}${PREFIX}/share/doc/ffmpeg2
 	${INSTALL_DATA} ${WRKSRC}/doc/ffserver.conf \
 		${DESTDIR}${PREFIX}/share/examples/ffmpeg2
-
-.include "options.mk"
+.if !empty(PKG_OPTIONS:Mtools)
+.  for tool in ${FFTOOLS}
+	${INSTALL_PROGRAM} ${WRKSRC}/tools/${tool} ${DESTDIR}${PREFIX}/bin
+.  endfor
+.endif
 
 .include "../../mk/compiler.mk"
+
+# XXX: Incompatible with our disabling -fomit-frame-pointer
+CONFIGURE_ARGS+=	--disable-asm
 
 # disable asm on i386 for non-gcc and gcc < 4.2
 .if ${MACHINE_ARCH} == "i386"
