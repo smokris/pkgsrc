@@ -27,10 +27,10 @@ _PATCH_DIGEST_ALGORITHMS?=	SHA1
 _COOKIE.checksum=	${_COOKIE.extract}
 
 _CHECKSUM_CMD=								\
-	${PKGSRC_SETENV} DIGEST=${TOOLS_DIGEST:Q} CAT=${TOOLS_CAT:Q}	\
-		ECHO=${TOOLS_ECHO:Q} SED=${TOOLS_CMDLINE_SED:Q}		\
-		TEST=${TOOLS_TEST:Q}					\
-	${SH} ${PKGSRCDIR}/mk/checksum/checksum				\
+	${PKGSRC_SETENV}						\
+	    DIGEST=${TOOLS_DIGEST:Q} SED=${TOOLS_CMDLINE_SED:Q}		\
+	    ${AWK} -f ${PKGSRCDIR}/mk/checksum/checksum.awk --
+
 
 .if defined(NO_CHECKSUM) || empty(_CKSUMFILES)
 checksum checksum-phase:
