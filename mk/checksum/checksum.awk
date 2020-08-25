@@ -34,7 +34,6 @@
 #	-s suffix	Strip the specified suffix from the file names
 #			when searching for the checksum.
 #
-#
 # BUGS
 #	The flow of this program is not performed in the most optimal way
 #	possible, as it was deemed important to retain output compatibility
@@ -46,9 +45,9 @@ BEGIN {
 	SED = ENVIRON["SED"] ? ENVIRON["SED"] : "sed"
 
 	# Retain output compatible with previous "checksum" shell script
-	self = "checksum"
+	progname = "checksum"
 
-	a_flag = ""
+	only_alg = ""
 	distinfo = ""
 	exitcode = 0
 	patch = 0
@@ -57,7 +56,7 @@ BEGIN {
 	for (arg = 1; arg < ARGC; arg++) {
 		opt = ARGV[arg]
 		if (opt == "-a") {
-			a_flag = ARGV[++arg]
+			only_alg = ARGV[++arg]
 		} else if (opt == "-p") {
 			patch = 1
 		} else if (opt == "-s") {
@@ -67,26 +66,25 @@ BEGIN {
 			break
 		} else if (match(opt, /^-.*/) != 0) {
 			opt = substr(opt, RSTART + 1, RLENGTH)
-			print self ": unknown option -- " opt > "/dev/stderr"
+			err(sprintf("%s: unknown option -- %s", progname, opt))
 			usage()
-			exit 1
+			exit 3
 		} else {
 			break
 		}
 	}
 
-	if (arg > ARGC) {
-		print self ": missing distinfo"
+	if (arg >= ARGC) {
 		usage()
-		exit 1
+		exit 3
 	}
 
 	distinfo = ARGV[arg++]
-	cmd = "test -f " distinfo
+	cmd = sprintf("test -f %s", distinfo)
 	if (system(cmd) != 0) {
-		print self ": " distinfo " not found"
-		usage()
-		exit 128
+		err(sprintf("%s: distinfo file missing: %s", progname,
+		    distinfo))
+		exit 3
 	}
 
 	#
@@ -98,7 +96,7 @@ BEGIN {
 		distfile = ARGV[arg++]
 		sfile = distfile
 		if (suffix) {
-			sub(suffix "$", "", sfile)
+			sfile = strip_suffix(sfile)
 		}
 		if (patch) {
 			gsub(/.*\//, "", sfile)
@@ -133,7 +131,8 @@ BEGIN {
 		}
 
 		algorithm = $1
-		distfile = substr($2, 2, (length($2) - 2)) # strip ()
+		# strip "(filename)" -> "filename"
+		distfile = substr($2, 2, (length($2) - 2))
 		checksum = $4
 
 		# Skip IGNORE lines (likely legacy at this point).
@@ -142,7 +141,7 @@ BEGIN {
 		}
 
 		# If -a is set then skip non-matching algorithms.
-		if (a_flag && tolower(algorithm) != tolower(a_flag)) {
+		if (only_alg && tolower(algorithm) != tolower(only_alg)) {
 			continue
 		}
 
@@ -159,8 +158,8 @@ BEGIN {
 		#
 		if (patch) {
 			patchfile = distfiles[distfile]
-			cmd = SED " -e '/[$]NetBSD.*/d' " patchfile " | " \
-			    DIGEST " " algorithm
+			cmd = sprintf("%s -e '/[$]NetBSD.*/d' %s | %s %s",
+			    SED, patchfile, DIGEST, algorithm)
 			while ((cmd | getline) > 0) {
 				checksums[algorithm, distfile] = $1
 			}
@@ -173,7 +172,8 @@ BEGIN {
 		# want to build a list of input files to digest(1) so they can
 		# all be calculated in one go.
 		#
-		distsums[algorithm] = distsums[algorithm] " " distfiles[distfile]
+		distsums[algorithm] = sprintf("%s %s", distsums[algorithm],
+		    distfiles[distfile])
 	}
 	close(distinfo)
 
@@ -183,14 +183,19 @@ BEGIN {
 	# to be compared against distinfo.
 	#
 	for (algorithm in distsums) {
-		cmd = DIGEST " " algorithm " " distsums[algorithm]
+		cmd = sprintf("%s %s %s", DIGEST, algorithm,
+		    distsums[algorithm])
 		while ((cmd | getline) > 0) {
 			# Should be unnecessary, but just in case.  If we want
 			# to be really paranoid then test that $1 == algorithm.
 			if (NF != 4) {
 				continue
 			}
+			# strip "(filename)" -> "filename"
 			distfile = substr($2, 2, length($2) - 2)
+			if (suffix) {
+				distfile = strip_suffix(distfile)
+			}
 			checksums[$1, distfile] = $4
 		}
 		close(cmd)
@@ -210,11 +215,12 @@ BEGIN {
 		}
 
 		algorithm = $1
-		distfile = substr($2, 2, (length($2) - 2)) # strip ()
+		# strip "(filename)" -> "filename"
+		distfile = substr($2, 2, (length($2) - 2))
 		checksum = $4
 
 		# If -a is set then skip non-matching algorithms.
-		if (a_flag && tolower(algorithm) != tolower(a_flag)) {
+		if (only_alg && tolower(algorithm) != tolower(only_alg)) {
 			continue
 		}
 
@@ -225,15 +231,18 @@ BEGIN {
 
 		# This is likely very legacy at this point.
 		if (checksum == "IGNORE") {
-			print self ": Ignoring checksum for " distfile
+			err(sprintf("%s: Ignoring checksum for %s", progname,
+			    distfile))
 			continue
 		}
 
 		if (checksums[algorithm,distfile] == checksum) {
-			print "=> Checksum " algorithm " OK for " distfile
+			printf("=> Checksum %s OK for %s\n", algorithm,
+			    distfile)
 			seen[distfile] = 1
 		} else {
-			print self ": Checksum " algorithm " mismatch for " distfile >"/dev/stderr"
+			err(sprintf("%s: Checksum %s mismatch for %s",
+			    progname, algorithm, distfile))
 			exit 1
 		}
 	}
@@ -244,24 +253,56 @@ BEGIN {
 	# one matching checksum.
 	#
 	for (distfile in distfiles) {
-		if (seen[distfile] == 0) {
-			if (a_flag) {
-				print self ": No " a_flag \
-				    " checksum recorded for " distfile \
-				    > "/dev/stderr"
-			} else {
-				print self ": No checksum recorded for " \
-				    distfile > "/dev/stderr"
-			}
-			exitcode = 2
+		if (seen[distfile])
+			continue
+
+		if (only_alg) {
+			err(sprintf("%s: No %s checksum recorded for %s",
+			    progname, only_alg, distfile))
+		} else {
+			err(sprintf("%s: No checksum recorded for %s",
+			    progname, distfile))
 		}
+		exitcode = 2
 	}
 
 	exit(exitcode)
 }
 
-function usage() {
-	print "usage: " self \
-	     " -- [-a algorithm] [-p] [-s suffix] distinfo [file ...]" \
-	     > "/dev/stderr"
+function err(errmsg)
+{
+	printf("%s\n", errmsg) > "/dev/stderr"
+}
+
+function usage()
+{
+	err(sprintf("usage: %s [-a algorithm] [-p] [-s suffix]" \
+		    " distinfo [file ...]", progname))
+}
+
+#
+# In order to provide maximum compatibility, the following function attempts
+# to strip the exact string suffix, rather than a simple sub() which may
+# interpret e.g. dots incorrectly as it uses regular expressions.
+#
+# "suffix" is a global variable, and this function is only called when it is
+# set.
+#
+function strip_suffix(filename)
+{
+	len_file = length(filename)
+	len_sufx = length(suffix)
+	len_s1 = len_file - len_sufx
+
+	if (len_s1 <= 0)
+		return filename
+
+	s1 = substr(filename, 1, len_s1)
+	s2 = substr(filename, len_s1 + 1, len_sufx)
+
+	if (s2 == suffix) {
+		return s1
+	} else {
+		return filename
+	}
 }
