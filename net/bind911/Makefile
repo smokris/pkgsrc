@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.25 2020/05/21 12:45:47 jperkin Exp $
+# $NetBSD: Makefile,v 1.29 2020/08/21 16:09:44 taca Exp $
 
 DISTNAME=	bind-${BIND_VERSION}
 PKGNAME=	${DISTNAME:S/-P/pl/}
@@ -14,7 +14,7 @@ CONFLICTS+=	host-[0-9]*
 
 MAKE_JOBS_SAFE=	no
 
-BIND_VERSION=	9.11.19
+BIND_VERSION=	9.11.22
 
 .include "../../mk/bsd.prefs.mk"
 
@@ -25,6 +25,7 @@ BUILD_DEFS+=	BIND_DIR VARBASE
 USE_TOOLS+=		pax perl pkg-config
 USE_LIBTOOL=		yes
 GNU_CONFIGURE=		yes
+MAKE_ENV+=		WRKDIR=${WRKDIR} PREFIX=${PREFIX}
 
 CONFIGURE_ARGS+=		--with-libtool
 CONFIGURE_ARGS+=		--sysconfdir=${PKG_SYSCONFDIR}
