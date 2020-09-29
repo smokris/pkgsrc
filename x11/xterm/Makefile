@@ -40,6 +40,8 @@ CONFIGURE_ARGS+=	--enable-narrowproto
 CONFIGURE_ARGS+=	--enable-wide-chars
 .endif
 
+CONFIGURE_ARGS+=	--with-utempter
+
 .include "../../x11/libX11/buildlink3.mk"
 .include "../../x11/libXt/buildlink3.mk"
 ###
@@ -60,6 +62,7 @@ post-install:
 
 .include "../../mk/curses.buildlink3.mk"
 .include "../../mk/termcap.buildlink3.mk"
+.include "../../joyent/libutempter/buildlink3.mk"
 .include "../../sysutils/desktop-file-utils/desktopdb.mk"
 .include "../../mk/xaw.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"
