@@ -1,7 +1,7 @@
-$NetBSD: distinfo,v 1.7 2019/08/03 06:46:52 adam Exp $
+$NetBSD: distinfo,v 1.16 2020/11/11 09:22:26 adam Exp $
 
-SHA1 (openldap-2.4.48.tgz) = c1984e80f6db038b317bf931866adb38e5537dcd
-RMD160 (openldap-2.4.48.tgz) = c91aa87634856d84386d2d8498b647ea2b1b7521
-SHA512 (openldap-2.4.48.tgz) = cf694a415be0bd55cc7f606099da2ed461748efd276561944cd29d7f5a8252a9be799d8778fac2d4fa9f382731eb4ca48c6b85630cb58a3b8249843561ae8feb
-Size (openldap-2.4.48.tgz) = 5704883 bytes
-SHA1 (patch-libraries_liblmdb_Makefile) = 6b2f0bb477b17b073095d499ff4496f3b30dc08f
+SHA1 (openldap-2.4.56.tgz) = 4c617b87bd50ef8d071e7deb7525af79b08d4910
+RMD160 (openldap-2.4.56.tgz) = 6f86470007c374647a2f4c4ac709f7f678d869a8
+SHA512 (openldap-2.4.56.tgz) = cf371db5595d5b6643db3e6788ce56e34fe271c244dd39d781cadd2a7f85cec421a51c11a4857a7e286ba94a27c1f0dab0ff27e8de20208587471f4a589588e6
+Size (openldap-2.4.56.tgz) = 5885444 bytes
+SHA1 (patch-libraries_liblmdb_Makefile) = 4dd8ed43169e5615b416e7e0696dd3b16e784282
