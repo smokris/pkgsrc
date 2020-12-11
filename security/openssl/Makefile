@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.246 2019/11/26 22:22:45 sevan Exp $
+# $NetBSD: Makefile,v 1.266 2020/12/08 18:54:17 wiz Exp $
 
-DISTNAME=	openssl-1.1.1d
+DISTNAME=	openssl-1.1.1i
 CATEGORIES=	security
 MASTER_SITES=	https://www.openssl.org/source/
 
@@ -18,13 +18,35 @@ TEST_TARGET=		tests
 HAS_CONFIGURE=		yes
 CONFIGURE_SCRIPT=	./config
 CONFIGURE_ARGS+=	--prefix=${PREFIX}
+CONFIGURE_ARGS+=	--libdir=${PREFIX}/lib
 CONFIGURE_ARGS+=	--openssldir=${PKG_SYSCONFDIR}
 CONFIGURE_ARGS+=	shared
+
+.include "../../mk/bsd.prefs.mk"
+
+.if !empty(MACHINE_PLATFORM:MDarwin-[0-8].*-powerpc)
+# No {get,make,set}context support before Darwin 9
+CONFIGURE_ARGS+=	no-async
+.endif
 
 .include "options.mk"
 
 CONFIGURE_ARGS+=	${CFLAGS} ${LDFLAGS}
 CONFIGURE_ENV+=		PERL=${PERL5:Q}
+
+# If the config script cannot guess the host system correctly then we need to
+# specify it manually and call the Configure script directly.
+OPENSSL_HOST.SunOS-i386=	solaris-x86-gcc
+OPENSSL_HOST.SunOS-x86_64=	solaris64-x86_64-gcc
+OPENSSL_HOST.Darwin-aarch64=	darwin64-arm64-cc
+
+LDFLAGS.SunOS+=	-lrt
+
+.if defined(OPENSSL_HOST.${OPSYS}-${MACHINE_ARCH})
+CONFIG_SHELL=		${PERL5}
+CONFIGURE_SCRIPT=	./Configure
+CONFIGURE_ARGS+=	${OPENSSL_HOST.${OPSYS}-${MACHINE_ARCH}}
+.endif
 
 PKGCONFIG_OVERRIDE+=		libcrypto.pc libssl.pc openssl.pc
 PKGCONFIG_OVERRIDE_STAGE=	post-build
@@ -49,6 +71,14 @@ PLIST_SUBST+=		SOEXT=${SOEXT}
 
 PRINT_PLIST_AWK+=	/^lib\/engines/ { gsub(/\.${SOEXT}$$/, ".$${SOEXT}"); }
 
+# Remove CC from the environment, to fix GCC version handling on HP-UX,
+# SunOS and Linux/sparc.
+#
+# See https://github.com/openssl/openssl/issues/11060.
+do-configure:
+	${RUN} cd ${WRKSRC} && ${SETENV} ${_CONFIGURE_SCRIPT_ENV:NCC=*}	\
+		${CONFIG_SHELL} ${CONFIGURE_SCRIPT} ${CONFIGURE_ARGS}
+
 #
 # Get rid of ridiculous namespace collisions like passwd.1 and just leave the
 # openssl-*.1 style variants.  On a more practical note this avoids creating
@@ -59,7 +89,9 @@ post-install:
 	for f in openssl-*; do						\
 		${RM} -f $${f};						\
 		${MV} `${ECHO} $${f} | ${SED} -e 's/openssl-//'` $${f};	\
-	done
+	done;								\
+	${RM} -f openssl-c_rehash.1;					\
+	${LN} -s openssl-rehash.1 c_rehash.1
 
 .include "../../mk/dlopen.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"
