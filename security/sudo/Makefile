@@ -1,12 +1,11 @@
-# $NetBSD: Makefile,v 1.169 2019/10/16 20:25:21 maya Exp $
+# $NetBSD: Makefile,v 1.182 2021/01/26 20:18:43 jperkin Exp $
 
-DISTNAME=	sudo-1.8.28
-PKGREVISION=	1
+DISTNAME=	sudo-1.9.5p2
 CATEGORIES=	security
 MASTER_SITES=	https://www.sudo.ws/dist/
 MASTER_SITES+=	ftp://ftp.sudo.ws/pub/sudo/
 MASTER_SITES+=	ftp://ftp.uwsg.indiana.edu/pub/security/sudo/
-MASTER_SITES+=	ftp://ftp.twaren.net/Unix/Security/Sudo/
+MASTER_SITES+=	http://ftp.twaren.net/Unix/Security/Sudo/
 MASTER_SITES+=	http://ftp.tux.org/pub/security/sudo/
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
@@ -55,7 +54,12 @@ BUILD_DEFS+=		VARBASE
 
 DOCDIR=			share/doc/${PKGBASE}
 EGDIR=			share/examples/${PKGBASE}
-CONF_FILES_PERMS=	${EGDIR}/sudoers ${PKG_SYSCONFDIR}/sudoers \
+CONF_FILES_PERMS=	${EGDIR}/sudo.conf ${PKG_SYSCONFDIR}/sudo.conf \
+			${REAL_ROOT_USER} ${REAL_ROOT_GROUP} 0440
+CONF_FILES_PERMS+=	${EGDIR}/sudo_logsrvd.conf \
+			${PKG_SYSCONFDIR}/sudo_logsrvd.conf \
+			${REAL_ROOT_USER} ${REAL_ROOT_GROUP} 0440
+CONF_FILES_PERMS+=	${EGDIR}/sudoers ${PKG_SYSCONFDIR}/sudoers \
 			${REAL_ROOT_USER} ${REAL_ROOT_GROUP} 0440
 OWN_DIRS+=		${PKG_SYSCONFDIR}/sudoers.d
 SPECIAL_PERMS+=		bin/sudo ${SETUID_ROOT_PERMS}
