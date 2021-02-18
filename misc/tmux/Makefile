@@ -6,7 +6,7 @@ MASTER_SITES=	${MASTER_SITE_GITHUB:=tmux/}
 GITHUB_RELEASE=	${PKGVERSION_NOREV}
 
 MAINTAINER=	leot@NetBSD.org
-HOMEPAGE=	http://tmux.github.io/
+HOMEPAGE=	https://tmux.github.io/
 COMMENT=	BSD-licensed terminal multiplexer (GNU Screen alternative)
 LICENSE=	modified-bsd
 
@@ -30,7 +30,7 @@ BUILDLINK_TRANSFORM+=	opt:-D_XPG4_2:-D_XPG6
 .endif
 
 # https://trac.macports.org/changeset/127986
-.if !empty(MACHINE_PLATFORM:MDarwin-1[0-9]*)
+.if !empty(MACHINE_PLATFORM:MDarwin-1[0-9].*)
 CPPFLAGS+=	-D__DARWIN_VERS_1050=0
 .endif
 
