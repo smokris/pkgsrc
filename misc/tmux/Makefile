@@ -1,13 +1,12 @@
-# $NetBSD: Makefile,v 1.47 2018/11/28 14:45:19 leot Exp $
+# $NetBSD: Makefile,v 1.55 2020/11/01 05:15:35 khorben Exp $
 
-DISTNAME=	tmux-2.8
-PKGREVISION=	1
+DISTNAME=	tmux-3.1c
 CATEGORIES=	misc
 MASTER_SITES=	${MASTER_SITE_GITHUB:=tmux/}
 GITHUB_RELEASE=	${PKGVERSION_NOREV}
 
 MAINTAINER=	leot@NetBSD.org
-HOMEPAGE=	http://tmux.github.io/
+HOMEPAGE=	https://tmux.github.io/
 COMMENT=	BSD-licensed terminal multiplexer (GNU Screen alternative)
 LICENSE=	modified-bsd
 
@@ -31,7 +30,7 @@ BUILDLINK_TRANSFORM+=	opt:-D_XPG4_2:-D_XPG6
 .endif
 
 # https://trac.macports.org/changeset/127986
-.if !empty(MACHINE_PLATFORM:MDarwin-1[0-9]*)
+.if !empty(MACHINE_PLATFORM:MDarwin-1[0-9].*)
 CPPFLAGS+=	-D__DARWIN_VERS_1050=0
 .endif
 
