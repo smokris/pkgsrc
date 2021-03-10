@@ -82,7 +82,6 @@ post-install:
 	${INSTALL_DATA} ${WRKSRC}/${f} ${DESTDIR}${PREFIX}/${DOCDIR}
 .endfor
 
-.include "../../mk/atomic64.mk"
 .include "../../security/openssl/buildlink3.mk"
 .include "../../devel/libuv/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"
