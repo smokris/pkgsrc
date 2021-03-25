@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.266 2020/12/08 18:54:17 wiz Exp $
+# $NetBSD: Makefile,v 1.269 2021/03/25 16:36:19 jperkin Exp $
 
-DISTNAME=	openssl-1.1.1i
+DISTNAME=	openssl-1.1.1k
 CATEGORIES=	security
 MASTER_SITES=	https://www.openssl.org/source/
 
@@ -40,7 +40,8 @@ OPENSSL_HOST.SunOS-i386=	solaris-x86-gcc
 OPENSSL_HOST.SunOS-x86_64=	solaris64-x86_64-gcc
 OPENSSL_HOST.Darwin-aarch64=	darwin64-arm64-cc
 
-LDFLAGS.SunOS+=	-lrt
+LDFLAGS.SunOS+=		-lrt
+CPPFLAGS.OpenBSD+=	-D__STDC_NO_ATOMICS__
 
 .if defined(OPENSSL_HOST.${OPSYS}-${MACHINE_ARCH})
 CONFIG_SHELL=		${PERL5}
