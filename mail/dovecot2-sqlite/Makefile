@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.24.2.1 2021/01/04 17:34:04 bsiegert Exp $
+# $NetBSD: Makefile,v 1.25 2021/01/04 14:57:19 taca Exp $
 
 .include "../../mail/dovecot2/Makefile.common"
 

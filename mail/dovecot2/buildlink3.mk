@@ -1,4 +1,4 @@
-# $NetBSD: buildlink3.mk,v 1.35.2.1 2021/01/04 17:34:04 bsiegert Exp $
+# $NetBSD: buildlink3.mk,v 1.36 2021/01/04 14:57:18 taca Exp $
 
 BUILDLINK_TREE+=	dovecot
 
