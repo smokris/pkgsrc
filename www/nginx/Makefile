@@ -1,9 +1,8 @@
-# $NetBSD: Makefile,v 1.97 2020/12/16 20:32:01 otis Exp $
+# $NetBSD: Makefile,v 1.99 2021/05/21 11:37:25 adam Exp $
 
-DISTNAME=	nginx-1.18.0
+DISTNAME=	nginx-1.20.0
 
 MAINTAINER=	joerg@NetBSD.org
 
-PKGREVISION= 8
 .include "../../www/nginx/Makefile.common"
 .include "../../mk/bsd.pkg.mk"
