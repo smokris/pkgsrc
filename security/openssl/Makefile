@@ -1,6 +1,9 @@
-# $NetBSD: Makefile,v 1.269 2021/03/25 16:36:19 jperkin Exp $
+# $NetBSD: Makefile,v 1.276 2021/08/25 15:22:05 adam Exp $
 
-DISTNAME=	openssl-1.1.1k
+# Remember to upload-distfiles when updating OpenSSL -- otherwise it
+# is not possible for users who have bootstrapped without OpenSSL
+# to install it and enable HTTPS fetching.
+DISTNAME=	openssl-1.1.1l
 CATEGORIES=	security
 MASTER_SITES=	https://www.openssl.org/source/
 
@@ -11,7 +14,8 @@ LICENSE=	openssl
 
 USE_GCC_RUNTIME=	yes
 
-USE_TOOLS+=		fgrep gmake makedepend perl
+USE_TOOLS+=		fgrep gmake perl
+USE_TOOLS.SunOS+=	gm4
 BUILD_TARGET=		depend all
 TEST_TARGET=		tests
 
@@ -29,9 +33,13 @@ CONFIGURE_ARGS+=	shared
 CONFIGURE_ARGS+=	no-async
 .endif
 
+# Fix 64-bit build on at least Mac OS X Snow Leopard
+.if ${OPSYS} == "Darwin" && ${MACHINE_ARCH} == "x86_64"
+CONFIGURE_ENV+=		KERNEL_BITS=${ABI}
+.endif
+
 .include "options.mk"
 
-CONFIGURE_ARGS+=	${CFLAGS} ${LDFLAGS}
 CONFIGURE_ENV+=		PERL=${PERL5:Q}
 
 # If the config script cannot guess the host system correctly then we need to

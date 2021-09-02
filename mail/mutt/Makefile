@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.244 2021/05/04 23:38:31 tron Exp $
+# $NetBSD: Makefile,v 1.249 2021/08/25 00:11:48 tron Exp $
 
-DISTNAME=		mutt-2.0.7
+DISTNAME=		mutt-2.1.2
 CATEGORIES=		mail
 MASTER_SITES=		http://ftp.mutt.org/pub/mutt/
 
@@ -14,11 +14,14 @@ DEPENDS+=		mime-types-[0-9]*:../../misc/mime-types
 BUILD_DEPENDS+=		docbook-xsl-[0-9]*:../../textproc/docbook-xsl
 BUILD_DEPENDS+=		lynx-[0-9]*:../../www/lynx
 
+BUILD_DEFS+=		VARBASE
+
 .include "../../mk/bsd.prefs.mk"
 
 USE_PKGLOCALEDIR=	yes
 USE_TOOLS+=		gmake msgfmt perl
 GNU_CONFIGURE=		yes
+CONFIGURE_ARGS+=	--with-mailpath=${VARBASE}/mail
 CONFIGURE_ARGS+=	--sysconfdir=${PKG_SYSCONFDIR}
 CONFIGURE_ARGS+=	--with-docdir=${PREFIX}/share/doc/mutt
 CONFIGURE_ARGS+=	--without-included-gettext
