@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.69 2020/12/06 11:22:52 adam Exp $
+# $NetBSD: Makefile,v 1.76 2021/04/26 08:20:01 adam Exp $
 
-DISTNAME=	haproxy-2.3.2
+DISTNAME=	haproxy-2.3.14
 CATEGORIES=	net www
 MASTER_SITES=	https://www.haproxy.org/download/${PKGVERSION_NOREV:R}/src/
 
@@ -13,7 +13,7 @@ USE_LANGUAGES=		c
 USE_TOOLS+=		gmake
 BUILD_MAKE_FLAGS+=	ADDLIB=${COMPILER_RPATH_FLAG}${PREFIX}/lib
 BUILD_MAKE_FLAGS+=	CC=${CC:Q}
-BUILD_MAKE_FLAGS+=	CFLAGS=${CFLAGS:Q}
+BUILD_MAKE_FLAGS+=	CPU_CFLAGS=${CFLAGS:Q}
 BUILD_MAKE_FLAGS+=	LDFLAGS=${LDFLAGS:Q}
 BUILD_MAKE_FLAGS+=	TARGET=${TARGET}
 BUILD_MAKE_FLAGS+=	USE_REGPARM=1
@@ -55,4 +55,5 @@ post-install:
 	${INSTALL_DATA} ${WRKSRC}/examples/*.cfg ${DESTDIR}${EGDIR}/
 
 .include "../../devel/zlib/buildlink3.mk"
+.include "../../mk/atomic64.mk"
 .include "../../mk/bsd.pkg.mk"
