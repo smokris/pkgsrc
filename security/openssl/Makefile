@@ -3,7 +3,7 @@
 # Remember to upload-distfiles when updating OpenSSL -- otherwise it
 # is not possible for users who have bootstrapped without OpenSSL
 # to install it and enable HTTPS fetching.
-DISTNAME=	openssl-1.1.1l
+DISTNAME=	openssl-3.0.0
 CATEGORIES=	security
 MASTER_SITES=	https://www.openssl.org/source/
 
@@ -87,20 +87,6 @@ PRINT_PLIST_AWK+=	/^lib\/engines/ { gsub(/\.${SOEXT}$$/, ".$${SOEXT}"); }
 do-configure:
 	${RUN} cd ${WRKSRC} && ${SETENV} ${_CONFIGURE_SCRIPT_ENV:NCC=*}	\
 		${CONFIG_SHELL} ${CONFIGURE_SCRIPT} ${CONFIGURE_ARGS}
-
-#
-# Get rid of ridiculous namespace collisions like passwd.1 and just leave the
-# openssl-*.1 style variants.  On a more practical note this avoids creating
-# a conflict with moreutils (ts.1).
-#
-post-install:
-	cd ${DESTDIR}${PREFIX}/${PKGMANDIR}/man1;			\
-	for f in openssl-*; do						\
-		${RM} -f $${f};						\
-		${MV} `${ECHO} $${f} | ${SED} -e 's/openssl-//'` $${f};	\
-	done;								\
-	${RM} -f openssl-c_rehash.1;					\
-	${LN} -s openssl-rehash.1 c_rehash.1
 
 .include "../../mk/dlopen.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"
