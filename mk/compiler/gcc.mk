@@ -716,13 +716,13 @@ _USE_GCC_SHLIB?=	yes
 # We require gcc-10.x in the lang/gcc10-* directory.
 #
 _GCC_PKGBASE=		gcc10
-.  if ${PKGPATH} == lang/gcc10
+.  if ${PKGPATH} == joyent/gcc10
 _IGNORE_GCC=		yes
 MAKEFLAGS+=		_IGNORE_GCC=yes
 .  endif
 .  if !defined(_IGNORE_GCC) && !empty(_LANGUAGES.gcc)
-_GCC_PKGSRCDIR=		../../lang/gcc10
-_GCC_DEPENDENCY=	gcc10>=${_GCC_REQD}:../../lang/gcc10
+_GCC_PKGSRCDIR=		../../joyent/gcc10
+_GCC_DEPENDENCY=	gcc10>=${_GCC_REQD}:../../joyent/gcc10
 .    if !empty(_LANGUAGES.gcc:Mc++) || \
         !empty(_LANGUAGES.gcc:Mfortran) || \
         !empty(_LANGUAGES.gcc:Mfortran77) || \
@@ -1075,7 +1075,7 @@ PREPEND_PATH+=	${_GCC_DIR}/bin
 #  Special case packages which are themselves a dependency of gcc runtime.
 .  if ${PKGPATH} != devel/binutils && empty(PKGPATH:Mjoyent/gcc9) && \
       empty(PKGPATH:Mlang/gcc4?) && empty(PKGPATH:Mlang/gcc[5-9]) && \
-      empty(PKGPATH:Mlang/gcc10)
+      empty(PKGPATH:Mlang/gcc10) && empty(PKGPATH:Mjoyent/gcc10)
 .    if !empty(_GCC_PKGBASE:Mgcc48)
 .      include "../../lang/gcc48-libs/buildlink3.mk"
 .    elif !empty(_GCC_PKGBASE:Mgcc49)
@@ -1091,7 +1091,7 @@ PREPEND_PATH+=	${_GCC_DIR}/bin
 .    elif !empty(_GCC_PKGBASE:Mgcc9)
 .      include "../../joyent/gcc9-libs/buildlink3.mk"
 .    elif !empty(_GCC_PKGBASE:Mgcc10)
-.      include "../../lang/gcc10-libs/buildlink3.mk"
+.      include "../../joyent/gcc10-libs/buildlink3.mk"
 .    else
 PKG_FAIL_REASON+=	"No USE_PKGSRC_GCC_RUNTIME support for ${CC_VERSION}"
 .    endif
