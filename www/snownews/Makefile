@@ -1,7 +1,6 @@
-# $NetBSD: Makefile,v 1.63 2021/09/29 19:01:29 adam Exp $
+# $NetBSD: Makefile,v 1.65 2021/10/18 11:25:11 nia Exp $
 
-DISTNAME=	snownews-1.8
-PKGREVISION=	1
+DISTNAME=	snownews-1.9
 CATEGORIES=	www
 MASTER_SITES=	${MASTER_SITE_GITHUB:=msharov/}
 GITHUB_TAG=	v${PKGVERSION_NOREV}
@@ -24,7 +23,6 @@ CONFIGURE_ARGS+=	--prefix=${PREFIX}
 CONFIGURE_ARGS+=	--mandir=${PREFIX}/${PKGMANDIR}
 CONFIGURE_ARGS+=	--localedir=${PREFIX}/${PKGLOCALEDIR}/locale
 
-.include "../../converters/libiconv/buildlink3.mk"
 .include "../../devel/gettext-lib/buildlink3.mk"
 .include "../../security/openssl/buildlink3.mk"
 .include "../../textproc/libxml2/buildlink3.mk"
