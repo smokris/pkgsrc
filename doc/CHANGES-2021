@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2021,v 1.5246 2021/10/22 11:13:43 adam Exp $
+$NetBSD: CHANGES-2021,v 1.5267 2021/10/24 06:40:48 taca Exp $
 
 Changes to the packages collection and infrastructure in 2021:
 
@@ -7998,3 +7998,24 @@ Changes to the packages collection and infrastructure in 2021:
 	Updated sysutils/macchina to 3.0.0 [pin 2021-10-22]
 	Updated textproc/py-xmlschema to 1.8.1 [adam 2021-10-22]
 	Updated www/py-respx to 0.18.1 [adam 2021-10-22]
+	Updated net/py-paho-mqtt to 1.6.1 [gdt 2021-10-22]
+	Updated graphics/php-imagick to 3.5.1 [jperkin 2021-10-22]
+	Updated lang/php80 to 8.0.12 [taca 2021-10-22]
+	Updated lang/php74 to 7.4.25 [taca 2021-10-22]
+	Updated mail/neomutt to 20211022 [wiz 2021-10-22]
+	Updated textproc/split-thai to 2.10 [scole 2021-10-22]
+	Updated games/openmw to 0.47.0 [nia 2021-10-22]
+	Updated devel/ruby-diva to 1.1.1 [tsutsui 2021-10-23]
+	Updated audio/mpg123 to 1.29.2 [thor 2021-10-23]
+	Updated audio/mpg123-jack to 1.29.2nb1 [thor 2021-10-23]
+	Updated audio/mpg123-nas to 1.29.2 [thor 2021-10-23]
+	Updated audio/mpg123-pulse to 1.29.2 [thor 2021-10-23]
+	Updated print/mupdf to 1.19.0 [leot 2021-10-23]
+	Updated sysutils/broot to 1.6.6 [pin 2021-10-23]
+	Updated devel/git-cliff to 0.4.2 [pin 2021-10-23]
+	Updated sysutils/pv to 1.6.20 [ryoon 2021-10-24]
+	Updated time/p5-DateTime-TimeZone to 2.51 [wen 2021-10-24]
+	Updated www/p5-CGI-Fast to 2.16 [wen 2021-10-24]
+	Updated www/p5-HTML-Escape to 1.11 [wen 2021-10-24]
+	Updated www/p5-HTML-FillInForm to 2.22 [wen 2021-10-24]
+	Updated net/bind916 to 9.16.21nb2 [taca 2021-10-24]
