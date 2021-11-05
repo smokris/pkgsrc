@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.3501 2021/10/10 01:13:53 wen Exp $
+# $NetBSD: Makefile,v 1.3504 2021/11/04 17:12:38 bsiegert Exp $
 #
 
 COMMENT=	Development utilities
@@ -2057,6 +2057,7 @@ SUBDIR+=	p5-subversion
 SUBDIR+=	p5-syntax
 SUBDIR+=	p5-thrift
 SUBDIR+=	p8-platform
+SUBDIR+=	packr
 SUBDIR+=	palmpower
 SUBDIR+=	pango
 SUBDIR+=	pangomm
@@ -2551,6 +2552,7 @@ SUBDIR+=	py-pyobjc-framework-WebKit
 SUBDIR+=	py-pyobjc-framework-iTunesLibrary
 SUBDIR+=	py-pyobjc-framework-libdispatch
 SUBDIR+=	py-pyparsing
+SUBDIR+=	py-pyparsing2
 SUBDIR+=	py-pyrsistent
 SUBDIR+=	py-pysha3
 SUBDIR+=	py-pysvn
@@ -2984,6 +2986,7 @@ SUBDIR+=	sdcc
 SUBDIR+=	sdcc3
 SUBDIR+=	semantic
 SUBDIR+=	semi
+SUBDIR+=	sfsexp
 SUBDIR+=	sfslite
 SUBDIR+=	sgb
 SUBDIR+=	shtk

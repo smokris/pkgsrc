@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.75 2021/10/08 21:52:49 wiz Exp $
+# $NetBSD: Makefile,v 1.77 2021/11/01 11:01:26 wiz Exp $
 
-DISTNAME=	vala-0.54.1
+DISTNAME=	vala-0.54.2
 CATEGORIES=	lang gnome
 MASTER_SITES=	${MASTER_SITE_GNOME:=sources/vala/${PKGVERSION_NOREV:R}/}
 EXTRACT_SUFX=	.tar.xz
@@ -15,16 +15,17 @@ BUILD_DEPENDS+=		docbook-xml-[0-9]*:../../textproc/docbook-xml
 
 GNU_CONFIGURE=		yes
 USE_LIBTOOL=		yes
-USE_TOOLS+=		bash:test bison flex gmake pkg-config
+USE_TOOLS+=		bison flex gmake pkg-config
 
 PKGCONFIG_OVERRIDE+=	libvala.pc.in
 PKGCONFIG_OVERRIDE+=	vapigen/vapigen.pc.in
 
-REPLACE_BASH+=		tests/testrunner.sh
-REPLACE_BASH+=		valadoc/tests/testrunner.sh
-
 # as of 0.50.1
 # 44 of 992 tests failed
+# as of 0.54.2
+# error: Package `GObject-2.0' not found in specified Vala API directories or GObject-Introspection GIR directories
+# error: Package `GLib-2.0' not found in specified Vala API directories or GObject-Introspection GIR directories
+# error: Package `Gio-2.0' not found in specified Vala API directories or GObject-Introspection GIR directories
 TEST_TARGET=		check
 
 BUILDLINK_API_DEPENDS.glib2+=	glib2>=2.48.0
