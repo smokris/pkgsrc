@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.60 2020/01/18 23:35:17 rillig Exp $
+# $NetBSD: Makefile,v 1.62 2021/11/09 10:25:13 nia Exp $
 
 DISTNAME=	grub-0.97
 PKGREVISION=	10
@@ -12,7 +12,7 @@ LICENSE=	gnu-gpl-v2
 
 CONFLICTS=	grub2-[0-9]*
 
-ONLY_FOR_PLATFORM=	*-*-i386 NetBSD-[5-9].*-x86_64
+ONLY_FOR_PLATFORM=	*-*-i386 *-*-x86_64
 
 GNU_CONFIGURE=		YES
 USE_TOOLS+=		gmake
@@ -21,6 +21,11 @@ INFO_FILES=		YES
 INSTALLATION_DIRS=	share/doc/grub
 
 BUILDLINK_TRANSFORM+=	opt:-fno-builtin:-ffreestanding
+
+SSP_SUPPORTED=		no
+FORTIFY_SUPPORTED=	no
+MKPIE_SUPPORTED=	no
+RELRO_SUPPORTED=	no
 
 .include "../../mk/bsd.prefs.mk"
 

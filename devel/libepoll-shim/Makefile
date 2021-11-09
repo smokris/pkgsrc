@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.4 2021/09/22 17:45:13 nia Exp $
+# $NetBSD: Makefile,v 1.6 2021/11/09 12:04:43 nia Exp $
 
 GITHUB_PROJECT=	epoll-shim
 GITHUB_TAG=	v${PKGVERSION_NOREV}
@@ -12,19 +12,23 @@ HOMEPAGE=	https://github.com/jiixyj/epoll-shim
 COMMENT=	Small epoll implemented using kevent
 LICENSE=	mit
 
-ONLY_FOR_PLATFORM=	NetBSD-*-* FreeBSD-*-* OpenBSD-*-* DragonFly-*-*
-
 USE_CMAKE=	yes
 USE_TOOLS+=	pkg-config
 USE_LANGUAGES=	c c++
 
 CMAKE_ARGS+=	-DBUILD_TESTING=OFF
 
+.include "../../mk/bsd.prefs.mk"
+
+.if !defined(OPSYS_HAS_KQUEUE)
+PKG_SKIP_REASON+=	"Requires a kqueue implementation"
+.endif
+
 PLIST_VARS+=	eventfd timerfd
-.if !exists(/usr/include/sys/eventfd.h)
+.if !defined(OPSYS_HAS_EVENTFD)
 PLIST.eventfd=	YES
 .endif
-.if !exists(/usr/include/sys/timerfd.h)
+.if !defined(OPSYS_HAS_TIMERFD)
 PLIST.timerfd=	YES
 .endif
 
