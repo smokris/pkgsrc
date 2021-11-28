@@ -1,4 +1,4 @@
-$NetBSD: patch-src_tools_rls_rls_src_server_io.rs,v 1.2 2019/05/31 14:11:23 jperkin Exp $
+$NetBSD: patch-src_tools_rls_rls_src_server_io.rs,v 1.5 2021/09/10 15:09:32 jperkin Exp $
 
 Use 32-bit atomic instead of 64-bit; latter may not be available on
 32-bit platforms (powerpc, earmv7).

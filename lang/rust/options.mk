@@ -1,20 +1,24 @@
-# $NetBSD: options.mk,v 1.8 2021/01/01 20:44:48 he Exp $
+# $NetBSD: options.mk,v 1.16 2021/07/17 13:16:38 jperkin Exp $
 
 PKG_OPTIONS_VAR=	PKG_OPTIONS.rust
 PKG_SUPPORTED_OPTIONS+=	rust-cargo-static
+PKG_SUPPORTED_OPTIONS+=	rust-llvm
 
 .include "../../mk/bsd.fast.prefs.mk"
 
-# The bundled LLVM current has issues building on SunOS.
-.if ${OPSYS} != "SunOS" && ${OPSYS} != "Darwin"
-PKG_SUPPORTED_OPTIONS+=		rust-llvm
 # There may be compatibility issues with base LLVM.
-.  if !empty(HAVE_LLVM)
-PKG_SUGGESTED_OPTIONS+=		rust-llvm
-.  endif
+.if !empty(HAVE_LLVM)
+PKG_SUGGESTED_OPTIONS+=	rust-llvm
 .endif
 
-.if ${OPSYS} == "NetBSD"
+# macOS/arm64 currently cannot used shared llvm
+.if !empty(MACHINE_PLATFORM:MDarwin-*-aarch64)
+PKG_SUGGESTED_OPTIONS+=	rust-llvm
+.endif
+
+# Bundle OpenSSL and curl into the cargo binary when producing
+# bootstraps on NetBSD.
+.if ${OPSYS} == "NetBSD" && ${BUILD_TARGET} == "dist"
 PKG_SUGGESTED_OPTIONS+=	rust-cargo-static
 .endif
 
@@ -24,10 +28,7 @@ PKG_SUGGESTED_OPTIONS+=	rust-cargo-static
 # Use the internal copy of LLVM.
 # This contains some extra optimizations.
 #
-.if !empty(PKG_OPTIONS:Mrust-llvm)
-BUILD_DEPENDS+=	cmake-[0-9]*:../../devel/cmake
-.include "../../devel/cmake/buildlink3.mk"
-.else
+.if empty(PKG_OPTIONS:Mrust-llvm)
 .include "../../lang/llvm/buildlink3.mk"
 CONFIGURE_ARGS+=	--enable-llvm-link-shared
 CONFIGURE_ARGS+=	--llvm-root=${BUILDLINK_PREFIX.llvm}
