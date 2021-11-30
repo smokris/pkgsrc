@@ -168,7 +168,7 @@ static char	varNoError[] = "";
  * TRUE for new compatible.
  */
 #define SAVE_DOLLARS ".MAKE.SAVE_DOLLARS"
-static Boolean save_dollars = FALSE;
+static Boolean save_dollars = TRUE;
 
 /*
  * Internally, variables are contained in four different contexts.
