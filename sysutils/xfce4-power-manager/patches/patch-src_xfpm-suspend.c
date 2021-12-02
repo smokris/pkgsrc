@@ -1,16 +1,26 @@
-$NetBSD: patch-src_xfpm-suspend.c,v 1.1 2018/05/18 17:07:29 youri Exp $
+$NetBSD: patch-src_xfpm-suspend.c,v 1.3 2021/11/30 15:28:00 gutteridge Exp $
 
 Add NetBSD support.
 
---- src/xfpm-suspend.c.orig	2015-07-14 08:02:18.000000000 +0000
+--- src/xfpm-suspend.c.orig	2020-11-04 23:23:14.000000000 +0000
 +++ src/xfpm-suspend.c
-@@ -144,6 +144,9 @@ xfpm_suspend_can_suspend (void)
+@@ -152,6 +151,9 @@ xfpm_suspend_can_suspend (void)
  #ifdef BACKEND_TYPE_OPENBSD
-     return TRUE;
+   return TRUE;
  #endif
 +#ifdef BACKEND_TYPE_NETBSD
-+    return TRUE;
++  return TRUE;
 +#endif
  
-     return FALSE;
+   return FALSE;
+ }
+@@ -169,6 +171,9 @@ xfpm_suspend_can_hibernate (void)
+ #ifdef BACKEND_TYPE_OPENBSD
+   return TRUE;
+ #endif
++#ifdef BACKEND_TYPE_NETBSD
++  return TRUE;
++#endif
+ 
+   return FALSE;
  }

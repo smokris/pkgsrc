@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.315 2021/11/16 15:00:32 nia Exp $
+# $NetBSD: Makefile,v 1.317 2021/11/29 19:31:02 wiz Exp $
 #
 
 COMMENT=	Multimedia utilities

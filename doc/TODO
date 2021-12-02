@@ -1,4 +1,4 @@
-$NetBSD: TODO,v 1.21296 2021/11/28 20:49:25 adam Exp $
+$NetBSD: TODO,v 1.21320 2021/12/02 07:28:50 pho Exp $
 
 Suggested new packages
 ======================
@@ -598,6 +598,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o cssc-1.4.1
 	o csvkit-1.0.5
 	o ctemplate-2.4
+	o cups-2.4
 	o cvs-fast-export-1.56
 	o cxref-1.6e
 	o cygwin_lib-1.5.24.2
@@ -605,7 +606,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o dap-3.10
 	o dar-2.4.14
 	o darcs-2.16.3
-	o darktable-3.6
 	o dateutils-0.4.8
 	o dcc-2.3.167
 	o dd_rescue-1.46
@@ -724,11 +724,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o frink-2.3.1a2
 	o fstrm-0.6.1
 	o ftplibpp-2.0.2
-	o fuse-archivemount-0.8.7
-	o fuse-bindfs-1.15.1
-	o fuse-encfs-1.9.5
-	o fuse-mp3fs-0.91 [needs fixes to work on NetBSD; started in wip]
-	o fuse-sshfs-3.7.1
 	o fuse-unionfs-2.1
 	o fvwm-devel-2.7.0
 	o fvwm2-themes-0.7.0
@@ -1217,7 +1212,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o mopher-0.6.0
 	o moserial-2.30.0
 	o mpcomplex-1.2.1
-	o mpdas-0.4.5
 	o mserv-devel-0.41
 	o mtail-1.2.0
 	o multitail-6.4.2
@@ -1846,11 +1840,12 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o terraform-provider-local-2.1.0
 	o terraform-provider-null-3.1.0
 	o terraform-provider-random-3.1.0
+	o tesseract-5.0
 	o tetrinetx-1.40c
 	o texworks-0.6.6
 	o tfmxplay-1.1.6
 	o threadweaver-5.81.0
-	o thunderbird-91
+	o thunderbird-91.3.0
 	o tightvnc-2.7.10
 	o tile-0.7.4
 	o tkcon-2.7.3
@@ -1899,7 +1894,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o verilator-4.204
 	o vfu-4.09
 	o vicq-0.4.2
-	o vim-8.2.2792
 	o vinagre-3.16.1
 	o vino-3.16.0
 	o virt-manager-3.2.0
@@ -1945,33 +1939,18 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o xerces-j-2.4.0 [pkg/21725]
 	o xerces-j-2.9.0
 	o xf86-video-nouveau-1.0.17
-	o xfce4-appfinder-4.16.1
-	o xfce4-conf-4.16.0
 	o xfce4-cpugraph-plugin-1.2.3
 	o xfce4-dashboard-0.9.2
-	o xfce4-datetime-plugin-0.8.1
-	o xfce4-desktop-4.16.0
 	o xfce4-diskperf-plugin-2.6.3
-	o xfce4-exo-4.16.2
 	o xfce4-fsguard-plugin-1.1.2
-	o xfce4-garcon-4.16.1
-	o xfce4-genmon-plugin-4.1.0
 	o xfce4-indicator-plugin-2.4.0
 	o xfce4-mount-plugin-1.1.5
 	o xfce4-netload-plugin-1.4.0
-	o xfce4-notes-plugin-1.9.0
-	o xfce4-panel-4.16.2
-	o xfce4-power-manager-4.16.0
-	o xfce4-session-4.16.0
-	o xfce4-settings-4.16.1
 	o xfce4-smartbookmark-plugin-0.5.2
 	o xfce4-systemload-plugin-1.3.1
 	o xfce4-taskmanager-1.5.2
-	o xfce4-thunar-4.16.8
-	o xfce4-verve-plugin-2.0.1
 	o xfce4-wavelan-plugin-0.6.2
 	o xfce4-weather-plugin-0.11.0
-	o xfce4-wm-4.16.1
 	o xfe-1.42 [pkg/52968]
 	o xforms-1.2.4
 	o xfpt-0.11
