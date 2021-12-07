@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2021,v 1.6004 2021/12/06 15:23:06 wiz Exp $
+$NetBSD: CHANGES-2021,v 1.6016 2021/12/07 12:06:25 jperkin Exp $
 
 Changes to the packages collection and infrastructure in 2021:
 
@@ -9052,3 +9052,21 @@ Changes to the packages collection and infrastructure in 2021:
 	Removed security/py-m2crypto [wiz 2021-12-06]
 	Updated textproc/py-parse_type to 0.5.6 [wiz 2021-12-06]
 	Updated textproc/py-pybtex-docutils to 1.0.1 [wiz 2021-12-06]
+	Updated net/libtorrent-rasterbar to 1.2.15 [adam 2021-12-06]
+	Updated security/py-cryptodome to 3.12.0 [adam 2021-12-06]
+	Updated security/pleaser to 0.5.1 [pin 2021-12-06]
+	Added x11/citron version 0.3.0 [pin 2021-12-06]
+	Added wm/leftwm version 0.2.10 [pin 2021-12-06]
+	Updated x11/xfce4-screenshooter to 1.9.9 [gutteridge 2021-12-07]
+	Updated misc/xfce4-weather-plugin to 0.11.0 [gutteridge 2021-12-07]
+	Updated x11/xscope to 1.4.2 [wiz 2021-12-07]
+	Updated x11/libX11 to 1.7.3 [wiz 2021-12-07]
+	Updated lang/python310 to 3.10.1 [adam 2021-12-07]
+	Updated lang/py310-html-docs to 3.10.1 [adam 2021-12-07]
+	Updated textproc/ugrep to 3.3.10 [adam 2021-12-07]
+	Updated devel/py-cython to 0.29.25 [adam 2021-12-07]
+	Updated sysutils/ansible-base to 2.10.16 [adam 2021-12-07]
+	Updated devel/glib2-tools to 2.70.2 [adam 2021-12-07]
+	Updated devel/glib2 to 2.70.2 [adam 2021-12-07]
+	Updated devel/gdbus-codegen to 2.70.2 [adam 2021-12-07]
+	Updated devel/gmake to 4.3nb3 [jperkin 2021-12-07]
