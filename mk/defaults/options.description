@@ -307,6 +307,7 @@ groonga-httpd		Enable nginx used for groonga-httpd.
 groonga-suggest-learner	Enable Groonga suggest learner.
 gsasl			Enable SASL support with gsasl.
 gsl			Use GNU Scientific Library.
+gspell			Enable gspell support.
 gssapi			Enable gssapi (Kerberos V) support.
 gstreamer		Enable gstreamer support.
 gstreamer-gstcheck	Enable gstcheck support in gstreamer.
@@ -563,6 +564,8 @@ modperl1		Use modperl 1.x as the CGI manager (with Apache 1.x).
 modperl2		Use modperl 2.x as the CGI manager (with Apache 2.x).
 modplug			Use for decoding mod-like music formats.
 mongo			Support the MongoDB database.
+mongodb3		Use last version of mongodb 3 before switch to server-side-public-license.
+mongodb4		Use mongodb 4, which requires server-side-public-license.
 moonlight		Support the obsolete Silverlight implementation.
 motif			Enable motif support.
 motoya			Add motoya fonts.
@@ -666,6 +669,7 @@ p5-module-build-dist-authoring		Enable building distfiles.
 p5-module-build-license-creation	Enable license creation.
 pam			Enable PAM support.
 pango			Enable Pango support.
+pbulk-rsync		Depend on rsync.
 pcb-motif		Use Motif for the gui instead of GTK for cad/pcb.
 pcre			Enable Perl-compatible regular expressions.
 pcre2			Use Perl Compatible Regular Expressions, API version 2.

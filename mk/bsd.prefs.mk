@@ -1,4 +1,4 @@
-# $NetBSD: bsd.prefs.mk,v 1.411 2021/11/12 20:29:05 nia Exp $
+# $NetBSD: bsd.prefs.mk,v 1.415 2021/11/30 09:39:11 jperkin Exp $
 #
 # This file includes the mk.conf file, which contains the user settings.
 #
@@ -93,6 +93,19 @@ OS_VERSION=		${_OS_VERSION_CMD:sh}
 MAKEFLAGS+=		OS_VERSION=${OS_VERSION:Q}
 .endif
 
+#
+# OPSYS_VERSION differs from OS_VERSION in that it should always evaluate to
+# an integer, allowing arithmetic expressions to simplify make(1) tests.  The
+# default command is likely correct for most OS, those that need to can set
+# it to a custom command in the later OPSYS-specific section.
+#
+.if !defined(OPSYS_VERSION)
+_OPSYS_VERSION_CMD=	${UNAME} -r | \
+			awk -F. '{printf "%02d%02d%02d", $$1, $$2, $$3}'
+OPSYS_VERSION=		${_OPSYS_VERSION_CMD:sh}
+MAKEFLAGS+=		OPSYS_VERSION=${OPSYS_VERSION:Q}
+.endif
+
 # Preload these for architectures not in all variations of bsd.own.mk,
 # which do not match their GNU names exactly.
 GNU_ARCH.aarch64eb?=	aarch64_be
@@ -159,8 +172,10 @@ OS_VARIANT!=		${UNAME} -s
 
 .elif ${OPSYS} == "Darwin"
 LOWER_OPSYS?=		darwin
-LOWER_OPSYS_VERSUFFIX=	${LOWER_OS_VERSION:C/([0-9]*).*/\1/}
+LOWER_OPSYS_VERSUFFIX=	${OS_VERSION:C/([0-9]*).*/\1/}
 LOWER_VENDOR?=		apple
+_OPSYS_VERSION_CMD=	sw_vers -productVersion | \
+			awk -F. '{printf("%02d%02d%02d", $$1, $$2, $$3)}'
 
 .elif ${OPSYS} == "DragonFly"
 OS_VERSION:=		${OS_VERSION:C/-.*$//}
@@ -170,7 +185,7 @@ LOWER_VENDOR?=		pc
 .elif ${OPSYS} == "FreeBSD"
 OS_VERSION:=		${OS_VERSION:C/-.*$//}
 LOWER_OPSYS?=		freebsd
-LOWER_OPSYS_VERSUFFIX=	${LOWER_OS_VERSION:C/([0-9]*).*/\1/}
+LOWER_OPSYS_VERSUFFIX=	${OS_VERSION:C/([0-9]*).*/\1/}
 .  if ${MACHINE_ARCH} == "i386"
 LOWER_VENDOR?=		pc
 .  endif
@@ -186,7 +201,7 @@ LOWER_VENDOR?=		pc
 LOWER_OPSYS?=		interix
 LOWER_VENDOR?=		pc
 .  if exists(/usr/lib/libc.so.5.2) || exists(/usr/lib/x86/libc.so.5.2)
-LOWER_OPSYS_VERSUFFIX=	${LOWER_OS_VERSION:C/([0-9]*).*/\1/}
+LOWER_OPSYS_VERSUFFIX=	${OS_VERSION:C/([0-9]*).*/\1/}
 .  else
 LOWER_OPSYS_VERSUFFIX?=	3
 .    if exists(/usr/lib/libc.so.3.5)
@@ -200,7 +215,6 @@ OS_VERSION=		3.0
 
 .elif ${OPSYS} == "MirBSD"
 LOWER_OPSYS?=		mirbsd
-LOWER_OS_VERSION=	${OS_VERSION}
 LOWER_OPSYS_VERSUFFIX=	${OS_VERSION}
 LOWER_VENDOR?=		unknown
 
@@ -299,9 +313,8 @@ LOWER_OPSYS:=		${OPSYS:tl}
 LOWER_OPSYS:=		${OPSYS:tl}
 .endif
 
-# Now commit the [LOWER_]OS_VERSION values computed above, eliding the :sh
+# Now commit the version values computed above, eliding the :sh
 OS_VERSION:=		${OS_VERSION}
-LOWER_OS_VERSION:=	${OS_VERSION:tl}
 
 MAKEFLAGS+=		LOWER_OPSYS=${LOWER_OPSYS:Q}
 
@@ -548,14 +561,14 @@ X11_TYPE?=		modular
 X11BASE?=	/usr/openwin
 .  elif ${OPSYS} == "Cygwin" || ${OPSYS} == "IRIX" || ${OPSYS} == "OSF1" || ${OPSYS} == "HPUX"
 X11BASE?=	/usr
-.  elif !empty(MACHINE_PLATFORM:MDarwin-[0-8].*-*)
+.  elif ${OPSYS} == "Darwin"
+.    if ${OPSYS_VERSION} < 100500
 X11BASE?=	/usr/X11R6
-.  elif !empty(MACHINE_PLATFORM:MDarwin-9.*-*) || \
-        !empty(MACHINE_PLATFORM:MDarwin-10.*-*) || \
-        !empty(MACHINE_PLATFORM:MDarwin-11.*-*)
+.    elif ${OPSYS_VERSION} < 100800
 X11BASE?=	/usr/X11
-.  elif !empty(MACHINE_PLATFORM:MDarwin-??.*-*)
+.    else
 X11BASE?=	/opt/X11
+.    endif
 .  elif ${OPSYS} == "NetBSD"
 X11BASE?=	/usr/X11R7
 .  elif exists(/usr/X11R7/lib/libX11.so)

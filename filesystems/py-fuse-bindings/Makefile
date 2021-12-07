@@ -1,31 +1,28 @@
-# $NetBSD: Makefile,v 1.19 2019/09/02 13:20:22 adam Exp $
+# $NetBSD: Makefile,v 1.21 2021/12/01 16:37:37 pho Exp $
 
-VERSION=		0.2.1
+VERSION=		1.0.4
 DISTNAME=		fuse-python-${VERSION}
 PKGNAME=		${PYPKGPREFIX}-fuse-bindings-${VERSION}
 CATEGORIES=		filesystems python
-MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=fuse/fuse-python}/
+MASTER_SITES=		${MASTER_SITE_PYPI:=f/fuse-python/}
 
 MAINTAINER=		pkgsrc-users@NetBSD.org
 HOMEPAGE=		https://pypi.python.org/pypi/fuse-python
 COMMENT=		Python bindings for FUSE and refuse
 LICENSE=		gnu-lgpl-v2.1
 
-PYDISTUTILSPKG=		yes
-PY_PATCHLIST=		yes
 USE_TOOLS+=		pkg-config
 
-PYTHON_VERSIONS_ACCEPTED=	27 # not yet ported as of 0.2.1
-
-INSTALLATION_DIRS=	share/examples/fuse-python
-
+EGDIR=			share/examples/${PKGBASE}
+INSTALLATION_DIRS=	${EGDIR}
+PLIST_SUBST+=		PYPKGPREFIX=${PYPKGPREFIX}
+PRINT_PLIST_AWK+=	{ gsub("${PYPKGPREFIX}-", "$${PYPKGPREFIX}-"); }
 post-install:
 	${INSTALL_SCRIPT} ${WRKSRC}/example/hello.py \
-		${DESTDIR}${PREFIX}/share/examples/fuse-python/
+		${DESTDIR}${PREFIX}/${EGDIR}
 	${INSTALL_SCRIPT} ${WRKSRC}/example/xmp.py \
-		${DESTDIR}${PREFIX}/share/examples/fuse-python/
+		${DESTDIR}${PREFIX}/${EGDIR}
 
 .include "../../lang/python/egg.mk"
-
 .include "../../mk/fuse.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.36 2021/05/24 19:53:19 wiz Exp $
+# $NetBSD: Makefile,v 1.38 2021/12/01 19:18:56 hauke Exp $
 
-DISTNAME=		lldpd-1.0.5
-PKGREVISION=		6
+DISTNAME=		lldpd-1.0.13
+PKGREVISION=		1
 CATEGORIES=		net
 MASTER_SITES=		http://media.luffy.cx/files/lldpd/
 
@@ -58,6 +58,9 @@ INSTALLATION_DIRS+=	${PKGMANDIR}/man5 ${PKGMANDIR}/man8
 INSTALLATION_DIRS+=	${EGDIR} share/doc
 INSTALLATION_DIRS+=	share/bash-completion/completions
 INSTALLATION_DIRS+=	share/zsh/site-functions
+
+# Ownership and permission conflict with useradd?
+#OWN_DIRS+=		${LLDPD_HOME}
 
 TEST_TARGET=		check
 
