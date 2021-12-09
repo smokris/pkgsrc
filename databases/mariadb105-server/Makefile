@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.18 2021/11/27 22:52:15 nia Exp $
+# $NetBSD: Makefile,v 1.20 2021/12/08 16:03:39 adam Exp $
 
 PKGNAME=	${DISTNAME:S/-/-server-/}
+PKGREVISION=	1
 COMMENT=	MariaDB 10.5, a free MySQL compatible database (server)
 
 CONFLICTS=	mysql-server-[0-9]*
@@ -36,6 +37,8 @@ PKG_SHELL.${MARIADB_USER}=	${SH}
 RCD_SCRIPTS=		mariadb
 SMF_NAME=		mariadb
 SMF_METHODS=		${RCD_SCRIPTS}
+
+CMAKE_ARGS+=		-DCONNECT_WITH_MONGO=NO
 
 FILES_SUBST+=		HOSTNAME_CMD=${HOSTNAME_CMD:Q}
 FILES_SUBST+=		MARIADB_DATADIR=${MARIADB_DATADIR}

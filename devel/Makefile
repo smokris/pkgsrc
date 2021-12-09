@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.3520 2021/12/06 12:45:04 schmonz Exp $
+# $NetBSD: Makefile,v 1.3522 2021/12/08 01:32:02 tnn Exp $
 #
 
 COMMENT=	Development utilities
@@ -435,6 +435,7 @@ SUBDIR+=	go-review
 SUBDIR+=	go-siphash
 SUBDIR+=	go-sys
 SUBDIR+=	go-tools
+SUBDIR+=	go-wire
 SUBDIR+=	go-xerrors
 SUBDIR+=	gob2
 SUBDIR+=	gobject-introspection
@@ -2440,6 +2441,7 @@ SUBDIR+=	py-olefile
 SUBDIR+=	py-open-vcdiff
 SUBDIR+=	py-ordered-set
 SUBDIR+=	py-oset
+SUBDIR+=	py-packageurl
 SUBDIR+=	py-packaging
 SUBDIR+=	py-packaging2
 SUBDIR+=	py-parameterized
@@ -2591,6 +2593,7 @@ SUBDIR+=	py-requests-futures
 SUBDIR+=	py-requests-mock
 SUBDIR+=	py-requests-toolbelt
 SUBDIR+=	py-requests-unixsocket
+SUBDIR+=	py-requirements-parser
 SUBDIR+=	py-resolvelib
 SUBDIR+=	py-restructuredtext_lint
 SUBDIR+=	py-retry_decorator
@@ -2681,6 +2684,8 @@ SUBDIR+=	py-txaio
 SUBDIR+=	py-txgithub
 SUBDIR+=	py-txrequests
 SUBDIR+=	py-typed-ast
+SUBDIR+=	py-types-setuptools
+SUBDIR+=	py-types-toml
 SUBDIR+=	py-typing
 SUBDIR+=	py-typing-extensions
 SUBDIR+=	py-unit
