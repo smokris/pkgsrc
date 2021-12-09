@@ -1,11 +1,11 @@
-# $NetBSD: Makefile,v 1.58 2020/08/31 18:10:55 wiz Exp $
+# $NetBSD: Makefile,v 1.60 2021/12/08 16:06:09 adam Exp $
 
-PKGREVISION= 4
+PKGREVISION= 1
 .include "../../meta-pkgs/xfce4/Makefile.common"
 
-DISTNAME=	xfce4-wavelan-plugin-0.6.1
+DISTNAME=	xfce4-wavelan-plugin-0.6.2
 CATEGORIES=	sysutils
-MASTER_SITES=	http://archive.xfce.org/src/panel-plugins/xfce4-wavelan-plugin/0.6/
+MASTER_SITES=	https://archive.xfce.org/src/panel-plugins/xfce4-wavelan-plugin/0.6/
 
 HOMEPAGE=	https://goodies.xfce.org/projects/panel-plugins/xfce4-wavelan-plugin
 COMMENT=	Xfce WLAN plugin
