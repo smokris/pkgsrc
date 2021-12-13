@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.2 2021/12/08 16:05:22 adam Exp $
+# $NetBSD: Makefile,v 1.4 2021/12/11 10:13:18 wiz Exp $
 
-PKGREVISION= 1
+PKGREVISION= 2
 .include "dist.mk"
 
 PKGNAME=	python310-${PY_DISTVERSION}
@@ -113,7 +113,6 @@ REPLACE_FILES.python+=	Lib/pydoc.py
 REPLACE_FILES.python+=	Lib/quopri.py
 REPLACE_FILES.python+=	Lib/smtpd.py
 REPLACE_FILES.python+=	Lib/smtplib.py
-REPLACE_FILES.python+=	Lib/symbol.py
 REPLACE_FILES.python+=	Lib/tabnanny.py
 REPLACE_FILES.python+=	Lib/tarfile.py
 REPLACE_FILES.python+=	Lib/test/bisect_cmd.py
