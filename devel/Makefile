@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.3523 2021/12/09 16:37:28 wiz Exp $
+# $NetBSD: Makefile,v 1.3525 2021/12/16 13:07:08 wiz Exp $
 #
 
 COMMENT=	Development utilities
@@ -2191,7 +2191,6 @@ SUBDIR+=	py-backports.functools_lru_cache
 SUBDIR+=	py-backports.os
 SUBDIR+=	py-backports.shutil_get_terminal_size
 SUBDIR+=	py-backports_abc
-SUBDIR+=	py-bcolz
 SUBDIR+=	py-behave
 SUBDIR+=	py-beniget
 SUBDIR+=	py-binaryornot
@@ -2284,6 +2283,7 @@ SUBDIR+=	py-dogpile-cache
 SUBDIR+=	py-dotenv
 SUBDIR+=	py-dulwich
 SUBDIR+=	py-editorconfig-core
+SUBDIR+=	py-empty-files
 SUBDIR+=	py-entrypoints
 SUBDIR+=	py-enum34
 SUBDIR+=	py-exam
