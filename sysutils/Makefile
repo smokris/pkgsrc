@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.988 2022/02/01 19:18:11 pin Exp $
+# $NetBSD: Makefile,v 1.990 2022/02/05 03:14:19 ryoon Exp $
 #
 
 COMMENT=	System utilities
@@ -397,6 +397,7 @@ SUBDIR+=	libnotify
 SUBDIR+=	libol
 SUBDIR+=	liboobs
 SUBDIR+=	libpciaccess
+SUBDIR+=	libtpms
 SUBDIR+=	libtree
 SUBDIR+=	libvirt
 SUBDIR+=	lilo
@@ -667,6 +668,7 @@ SUBDIR+=	sunxi-tools
 SUBDIR+=	sux
 SUBDIR+=	swapd
 SUBDIR+=	swatch
+SUBDIR+=	swtpm
 SUBDIR+=	sysbuild
 SUBDIR+=	sysbuild-user
 SUBDIR+=	sysgen

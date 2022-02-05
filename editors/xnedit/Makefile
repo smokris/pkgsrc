@@ -1,7 +1,6 @@
-# $NetBSD: Makefile,v 1.2 2022/01/31 10:39:24 micha Exp $
+# $NetBSD: Makefile,v 1.4 2022/02/04 12:33:30 micha Exp $
 
-VERS=		1.4.0
-DISTNAME=	xnedit-${VERS}
+DISTNAME=	xnedit-1.4.0
 PKGREVISION=	1
 CATEGORIES=	editors
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=xnedit/}
@@ -63,6 +62,7 @@ do-install:
 .endfor
 
 .include "../../converters/libiconv/buildlink3.mk"
+LIBS+=	${BUILDLINK_LDADD.iconv}
 .include "../../devel/pcre/buildlink3.mk"
 .include "../../fonts/fontconfig/buildlink3.mk"
 .include "../../mk/motif.buildlink3.mk"
