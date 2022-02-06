@@ -1,5 +1,5 @@
 #! @PYTHONBIN@
-# $NetBSD: url2pkg.py,v 1.35 2022/01/01 15:29:14 rillig Exp $
+# $NetBSD: url2pkg.py,v 1.40 2022/02/06 20:08:49 rillig Exp $
 
 # Copyright (c) 2019 The NetBSD Foundation, Inc.
 # All rights reserved.
@@ -47,8 +47,8 @@ import re
 import subprocess
 import sys
 from pathlib import Path
-from typing import Any, Callable, Dict, List, NamedTuple, Optional, Set, \
-    Tuple, Union
+from typing import Any, Callable, Dict, List, NamedTuple, NoReturn, \
+    Optional, Set, Tuple, Union
 
 
 class Var(NamedTuple):
@@ -315,8 +315,8 @@ class Lines:
         return False
 
 
-class Generator:
-    """ Generates the initial package Makefile. """
+class PackageVars:
+    """ Determines the package variables from a distfile URL. """
     url: str
     master_sites: str
     distfile: str
@@ -333,7 +333,7 @@ class Generator:
     distname: str
     pkgname: str
 
-    def __init__(self, url: str) -> None:
+    def __init__(self, url: str, pkgsrcdir: Path) -> None:
         self.url = url
         self.master_sites = ''
         self.distfile = ''
@@ -350,12 +350,20 @@ class Generator:
         self.distname = ''
         self.pkgname = ''
 
-    def foreach_site_from_sites_mk(self, action: Callable[[str, str], None]):
+        self.adjust_site_SourceForge()
+        self.adjust_site_GitHub_archive()
+        self.adjust_site_GitHub_release()
+        self.adjust_site_from_sites_mk(pkgsrcdir)
+        self.adjust_site_PyPI()
+        self.adjust_site_other()
+        self.adjust_everything_else()
+
+    def adjust_site_from_sites_mk(self, pkgsrcdir: Path):
         if self.master_sites != '':
             return
 
         varname = ''
-        with open('../../mk/fetch/sites.mk') as sites_mk:
+        with open(pkgsrcdir / 'mk/fetch/sites.mk') as sites_mk:
             for line in sites_mk:
                 m = re.search(r'^(MASTER_SITE_.*)\+=', line)
                 if m:
@@ -364,9 +372,9 @@ class Generator:
 
                 m = re.search(r'^\t(.*?)(?:\s+\\)?$', line)
                 if m:
-                    action(varname, m[1])
+                    self.adjust_site_from_site_var(varname, m[1])
 
-    def adjust_site_from_sites_mk(self, varname: str, site_url: str):
+    def adjust_site_from_site_var(self, varname: str, site_url: str):
 
         url_noproto = re.sub(r'^\w+://', '', self.url)
         site_url_noproto = re.sub(r'^\w+://', '', site_url)
@@ -432,7 +440,6 @@ class Generator:
         self.master_sites = f'${{MASTER_SITE_PYPI:={project[0]}/{project}/}}'
         self.homepage = f'https://pypi.org/project/{project}/'
         self.distfile = filename
-
 
     def adjust_site_GitHub_archive(self):
         pattern = r'''(?x)
@@ -533,26 +540,50 @@ class Generator:
             os.getenv('PKGMAINTAINER') or os.getenv('REPLYTO') \
             or 'INSERT_YOUR_MAIL_ADDRESS_HERE # or use pkgsrc-users@NetBSD.org'
 
-    def generate_lines(self) -> Lines:
+    def package_dir(self) -> str:
+        """Generate the suggested directory name for the package."""
+
+        if self.github_project != '':
+            return self.github_project
+
+        m = re.fullmatch(r'(.*?)-v?[0-9].*', self.distname)
+        if not m:
+            return ''
+        if 'MASTER_SITE_PYPI' in self.master_sites:
+            return f'py-{m[1]}'
+        if 'MASTER_SITE_CPAN' in self.master_sites:
+            return f'p5-{m[1]}'
+        return m[1]
+
+
+class Generator:
+    """ Generates the initial package Makefile. """
+    vars: PackageVars
+
+    def __init__(self, url: str):
+        self.vars = PackageVars(url, Path('../..'))
+
+    def generate_Makefile(self) -> Lines:
+        vars = self.vars
         lines = Lines()
         lines.add('# $''NetBSD$')
         lines.add('')
 
         lines.add_vars(
-            Var('GITHUB_PROJECT', '=', self.github_project),
-            Var('GITHUB_TAG', '=', self.github_tag),
-            Var('DISTNAME', '=', self.distname),
-            Var('PKGNAME', '=', self.pkgname),
-            Var('CATEGORIES', '=', self.categories),
-            Var('MASTER_SITES', '=', self.master_sites),
-            Var('GITHUB_RELEASE', '=', self.github_release),
-            Var('EXTRACT_SUFX', '=', self.extract_sufx),
-            Var('DIST_SUBDIR', '=', self.dist_subdir),
+            Var('GITHUB_PROJECT', '=', vars.github_project),
+            Var('GITHUB_TAG', '=', vars.github_tag),
+            Var('DISTNAME', '=', vars.distname),
+            Var('PKGNAME', '=', vars.pkgname),
+            Var('CATEGORIES', '=', vars.categories),
+            Var('MASTER_SITES', '=', vars.master_sites),
+            Var('GITHUB_RELEASE', '=', vars.github_release),
+            Var('EXTRACT_SUFX', '=', vars.extract_sufx),
+            Var('DIST_SUBDIR', '=', vars.dist_subdir),
         )
 
         lines.add_vars(
-            Var('MAINTAINER', '=', self.maintainer),
-            Var('HOMEPAGE', '=', self.homepage),
+            Var('MAINTAINER', '=', vars.maintainer),
+            Var('HOMEPAGE', '=', vars.homepage),
             Var('COMMENT', '=', 'TODO: Short description of the package'),
             Var('#LICENSE', '=', '# TODO: (see mk/license.mk)'),
         )
@@ -561,16 +592,6 @@ class Generator:
         lines.add('.include "../../mk/bsd.pkg.mk"')
 
         return lines
-
-    def generate_Makefile(self) -> Lines:
-        self.adjust_site_SourceForge()
-        self.adjust_site_GitHub_archive()
-        self.adjust_site_GitHub_release()
-        self.foreach_site_from_sites_mk(self.adjust_site_from_sites_mk)
-        self.adjust_site_PyPI()
-        self.adjust_site_other()
-        self.adjust_everything_else()
-        return self.generate_lines()
 
     def generate_package(self, g: Globals) -> Lines:
         pkgdir = g.pkgdir
@@ -1082,7 +1103,7 @@ class Adjuster:
         if lines.get('GITHUB_PROJECT') == '':
             return
 
-        # don't risk to overwrite any changes made by the package developer.
+        # don't risk overwriting any changes made by the package developer.
         if edited_lines.lines != initial_lines.lines:
             lines.lines.insert(-2, '# TODO: Migrate MASTER_SITES '
                                    'to MASTER_SITE_PYPI')
@@ -1203,15 +1224,11 @@ class Adjuster:
             self.g.bmake('distinfo')
 
 
-def usage():
+def usage() -> NoReturn:
     sys.exit(f'usage: {sys.argv[0]} [-v|--verbose] URL')
 
 
 def main(argv: List[str], g: Globals):
-    if not os.path.isfile('../../mk/bsd.pkg.mk'):
-        sys.exit(f'{argv[0]}: must be run from a package directory '
-                 f'(.../pkgsrc/category/package)')
-
     try:
         opts, args = getopt.getopt(argv[1:], 'v', ['verbose'])
         for (opt, _) in opts:
@@ -1220,9 +1237,25 @@ def main(argv: List[str], g: Globals):
     except getopt.GetoptError:
         usage()
 
-    url = args[0] if args else usage()
+    url = args[0] if len(args) == 1 else usage()
     if not re.fullmatch(r'\w+://[!-~]+?/[!-~]+', url):
         sys.exit(f'url2pkg: invalid URL: {url}')
+
+    if os.path.isfile('../mk/bsd.pkg.mk'):
+        vars = PackageVars(url, Path('..'))
+        dir = vars.package_dir()
+
+        if dir == '':
+            sys.exit(f'url2pkg: cannot determine package directory '
+                     f'from distname \'{vars.distname}\'')
+        if Path(dir).exists():
+            sys.exit(f'url2pkg: package directory \'{dir}\' already exists')
+        os.mkdir(dir)
+        os.chdir(dir)
+
+    if not os.path.isfile('../../mk/bsd.pkg.mk'):
+        sys.exit(f'{argv[0]}: must be run from a package or category directory '
+                 f'(.../pkgsrc/category[/package])')
 
     initial_lines = Generator(url).generate_package(g)
     Adjuster(g, url, initial_lines).adjust()
