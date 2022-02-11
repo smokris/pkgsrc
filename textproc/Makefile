@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1275 2022/02/06 07:46:29 adam Exp $
+# $NetBSD: Makefile,v 1.1281 2022/02/10 19:04:30 gutteridge Exp $
 #
 
 COMMENT=	Text processing utilities (does not include desktop publishing)
@@ -181,6 +181,7 @@ SUBDIR+=	csvutils
 SUBDIR+=	cwdiff
 SUBDIR+=	dadadodo
 SUBDIR+=	db2latex
+SUBDIR+=	dbcat
 SUBDIR+=	dblatex
 SUBDIR+=	detex
 SUBDIR+=	dict-client
@@ -426,6 +427,7 @@ SUBDIR+=	java-native-hyperestraier
 SUBDIR+=	java-pure-hyperestraier
 SUBDIR+=	jdom
 SUBDIR+=	jing
+SUBDIR+=	jless
 SUBDIR+=	jo
 SUBDIR+=	jrep
 SUBDIR+=	json-c
@@ -963,6 +965,7 @@ SUBDIR+=	py-breathe
 SUBDIR+=	py-cElementTree
 SUBDIR+=	py-cabocha
 SUBDIR+=	py-cmTemplate
+SUBDIR+=	py-cmudict
 SUBDIR+=	py-color
 SUBDIR+=	py-colored
 SUBDIR+=	py-colour
@@ -1089,7 +1092,9 @@ SUBDIR+=	py-sphinx-astropy
 SUBDIR+=	py-sphinx-autoapi
 SUBDIR+=	py-sphinx-autodoc-typehints
 SUBDIR+=	py-sphinx-automodapi
+SUBDIR+=	py-sphinx-copybutton
 SUBDIR+=	py-sphinx-gallery
+SUBDIR+=	py-sphinx-inline-tabs
 SUBDIR+=	py-sphinx-issues
 SUBDIR+=	py-sphinx-rtd-theme
 SUBDIR+=	py-sphinx-theme-cloud

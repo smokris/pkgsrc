@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1 2022/02/05 20:51:07 nia Exp $
+# $NetBSD: Makefile,v 1.3 2022/02/10 07:35:52 nia Exp $
 
 DISTNAME=	arcticfox-39.0
 CATEGORIES=	www
@@ -82,7 +82,6 @@ REPLACE_PYTHON+=		xpcom/typelib/xpt/tools/xpt.py
 PYTHON_VERSIONS_ACCEPTED=	27
 TOOL_DEPENDS+=			${PYPKGPREFIX}-expat-[0-9]*:../../textproc/py-expat
 
-NOT_PAX_MPROTECT_SAFE+=		bin/arcticfox
 NOT_PAX_MPROTECT_SAFE+=		lib/${PKGNAME_NOREV}/arcticfox
 NOT_PAX_MPROTECT_SAFE+=		lib/${PKGNAME_NOREV}/arcticfox-bin
 
@@ -126,6 +125,7 @@ BUILDLINK_API_DEPENDS.libevent+=	libevent>=1.1
 .include "../../textproc/hunspell/buildlink3.mk"
 #.include "../../textproc/icu/buildlink3.mk"
 .include "../../x11/gtk2/buildlink3.mk"
+.include "../../x11/libXt/buildlink3.mk"
 .include "../../x11/pixman/buildlink3.mk"
 #.include "../../mk/jpeg.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"
