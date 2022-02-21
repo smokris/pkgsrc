@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.525 2022/01/25 01:37:49 wiz Exp $
+# $NetBSD: Makefile,v 1.536 2022/02/17 10:54:56 wiz Exp $
 
 COMMENT=	Mathematics
 
@@ -211,19 +211,28 @@ SUBDIR+=	heirloom-units
 SUBDIR+=	hercules4sdl-decnumber
 SUBDIR+=	hercules4sdl-softfloat
 SUBDIR+=	herisvm
+SUBDIR+=	hs-adjunctions
+SUBDIR+=	hs-algebraic-graphs
 SUBDIR+=	hs-bifunctors
 SUBDIR+=	hs-comonad
 SUBDIR+=	hs-contravariant
 SUBDIR+=	hs-distributive
+SUBDIR+=	hs-free
 SUBDIR+=	hs-ieee754
 SUBDIR+=	hs-integer-logarithms
+SUBDIR+=	hs-invariant
+SUBDIR+=	hs-kan-extensions
 SUBDIR+=	hs-math-functions
+SUBDIR+=	hs-mod
+SUBDIR+=	hs-monoid-subclasses
 SUBDIR+=	hs-mwc-random
 SUBDIR+=	hs-nats
+SUBDIR+=	hs-primes
 SUBDIR+=	hs-profunctors
 SUBDIR+=	hs-scientific
 SUBDIR+=	hs-semigroupoids
 SUBDIR+=	hs-semigroups
+SUBDIR+=	hs-semirings
 SUBDIR+=	imath
 SUBDIR+=	ipopt
 SUBDIR+=	isl
@@ -362,12 +371,10 @@ SUBDIR+=	py-asteval
 SUBDIR+=	py-astroML
 SUBDIR+=	py-astropy
 SUBDIR+=	py-astropy-helpers
-SUBDIR+=	py-autograd
 SUBDIR+=	py-bottleneck
 SUBDIR+=	py-cdecimal
 SUBDIR+=	py-claripy
 SUBDIR+=	py-ephem
-SUBDIR+=	py-fftw
 SUBDIR+=	py-fpconst
 SUBDIR+=	py-gmpy
 SUBDIR+=	py-gwcs

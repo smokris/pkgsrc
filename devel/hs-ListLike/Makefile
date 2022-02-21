@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.2 2022/01/18 02:48:02 pho Exp $
+# $NetBSD: Makefile,v 1.4 2022/02/12 08:50:27 pho Exp $
 
-DISTNAME=	ListLike-4.7.4
+DISTNAME=	ListLike-4.7.6
 PKGREVISION=	1
 CATEGORIES=	devel
 

@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.4 2022/01/18 02:48:18 pho Exp $
+# $NetBSD: Makefile,v 1.6 2022/02/12 08:50:44 pho Exp $
 
-DISTNAME=	contravariant-1.5.3
-PKGREVISION=	2
+DISTNAME=	contravariant-1.5.5
+PKGREVISION=	1
 CATEGORIES=	math
 
 MAINTAINER=	pho@cielonegro.org

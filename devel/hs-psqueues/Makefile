@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.2 2022/01/18 02:48:11 pho Exp $
+# $NetBSD: Makefile,v 1.4 2022/02/12 08:50:36 pho Exp $
 
-DISTNAME=	psqueues-0.2.7.2
+DISTNAME=	psqueues-0.2.7.3
 PKGREVISION=	1
 CATEGORIES=	devel
 

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.166 2021/12/06 22:09:13 pin Exp $
+# $NetBSD: Makefile,v 1.168 2022/02/11 13:45:25 pin Exp $
 #
 
 COMMENT=	X11 window managers, configuration tools, and themes
@@ -57,6 +57,7 @@ SUBDIR+=	matchbox-wm
 SUBDIR+=	mate-netbook
 SUBDIR+=	mcwm
 SUBDIR+=	mlvwm
+SUBDIR+=	mmutils
 SUBDIR+=	musca
 SUBDIR+=	mutter
 SUBDIR+=	notion
@@ -105,6 +106,7 @@ SUBDIR+=	wmextra
 SUBDIR+=	wmi
 SUBDIR+=	wmii
 SUBDIR+=	wmutils-core
+SUBDIR+=	wmutils-libwm
 SUBDIR+=	wmutils-opt
 SUBDIR+=	wmx
 SUBDIR+=	wmx-gnome

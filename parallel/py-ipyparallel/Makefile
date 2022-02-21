@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.2 2022/02/07 17:07:22 adam Exp $
+# $NetBSD: Makefile,v 1.4 2022/02/13 17:19:42 wiz Exp $
 
 DISTNAME=	ipyparallel-8.2.0
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME:S/_/-/}
@@ -10,6 +10,7 @@ HOMEPAGE=	https://ipython.org/
 COMMENT=	Interactive Parallel Computing with IPython
 LICENSE=	modified-bsd
 
+BUILD_DEPENDS+=	${PYPKGPREFIX}-packaging-[0-9]*:../../devel/py-packaging
 DEPENDS+=	${PYPKGPREFIX}-decorator-[0-9]*:../../devel/py-decorator
 DEPENDS+=	${PYPKGPREFIX}-entrypoints-[0-9]*:../../devel/py-entrypoints
 DEPENDS+=	${PYPKGPREFIX}-dateutil>=2.1:../../time/py-dateutil

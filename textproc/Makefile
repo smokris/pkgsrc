@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1281 2022/02/10 19:04:30 gutteridge Exp $
+# $NetBSD: Makefile,v 1.1289 2022/02/21 13:45:48 fcambus Exp $
 #
 
 COMMENT=	Text processing utilities (does not include desktop publishing)
@@ -290,6 +290,7 @@ SUBDIR+=	hre
 SUBDIR+=	hs-Diff
 SUBDIR+=	hs-Glob
 SUBDIR+=	hs-HsYAML
+SUBDIR+=	hs-HsYAML-aeson
 SUBDIR+=	hs-annotated-wl-pprint
 SUBDIR+=	hs-ansi-wl-pprint
 SUBDIR+=	hs-appar
@@ -311,6 +312,7 @@ SUBDIR+=	hs-csv
 SUBDIR+=	hs-doclayout
 SUBDIR+=	hs-doctemplates
 SUBDIR+=	hs-edit-distance
+SUBDIR+=	hs-fuzzy
 SUBDIR+=	hs-haddock-library
 SUBDIR+=	hs-hscolour
 SUBDIR+=	hs-hslua-module-text
@@ -327,11 +329,14 @@ SUBDIR+=	hs-pandoc-types
 SUBDIR+=	hs-polyparse
 SUBDIR+=	hs-prettyprinter
 SUBDIR+=	hs-prettyprinter-ansi-terminal
+SUBDIR+=	hs-regex-applicative
 SUBDIR+=	hs-regex-base
+SUBDIR+=	hs-regex-compat-tdfa
 SUBDIR+=	hs-regex-pcre
 SUBDIR+=	hs-regex-posix
 SUBDIR+=	hs-regex-tdfa
 SUBDIR+=	hs-rfc5051
+SUBDIR+=	hs-rope-utf16-splay
 SUBDIR+=	hs-shakespeare
 SUBDIR+=	hs-skylighting
 SUBDIR+=	hs-skylighting-core
@@ -339,6 +344,8 @@ SUBDIR+=	hs-stringsearch
 SUBDIR+=	hs-tagsoup
 SUBDIR+=	hs-texmath
 SUBDIR+=	hs-text-short
+SUBDIR+=	hs-unicode-collation
+SUBDIR+=	hs-unicode-data
 SUBDIR+=	hs-unicode-show
 SUBDIR+=	hs-unicode-transforms
 SUBDIR+=	hs-wcwidth
@@ -1357,6 +1364,7 @@ SUBDIR+=	xxdiff
 SUBDIR+=	xxdiff-scripts
 SUBDIR+=	yamcha
 SUBDIR+=	yaml-cpp
+SUBDIR+=	ydiff
 SUBDIR+=	yelp-tools
 SUBDIR+=	yelp-xsl
 SUBDIR+=	yodl

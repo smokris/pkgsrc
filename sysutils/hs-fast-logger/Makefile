@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.2 2022/01/18 02:48:22 pho Exp $
+# $NetBSD: Makefile,v 1.4 2022/02/12 08:50:49 pho Exp $
 
-DISTNAME=	fast-logger-3.0.5
+DISTNAME=	fast-logger-3.1.1
 PKGREVISION=	1
 CATEGORIES=	sysutils
 

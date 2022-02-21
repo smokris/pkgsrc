@@ -1,17 +1,18 @@
-# $NetBSD: Makefile,v 1.5 2022/01/29 08:48:41 wiz Exp $
+# $NetBSD: Makefile,v 1.7 2022/02/20 12:48:48 fcambus Exp $
 
-DISTNAME=	yq-2.9.2
-PKGREVISION=	3
+DISTNAME=	yq-2.13.0
 CATEGORIES=	textproc
 MASTER_SITES=	${MASTER_SITE_GITHUB:=kislyuk/}
 GITHUB_TAG=	v${PKGVERSION_NOREV}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	https://yq.readthedocs.io/
+HOMEPAGE=	https://kislyuk.github.io/yq/
 COMMENT=	Command-line YAML and XML processor
 LICENSE=	apache-2.0
 
 DEPENDS+=	jq-[0-9]*:../../devel/jq
+
+DEPENDS+=	${PYPKGPREFIX}-argcomplete-[0-9]*:../../devel/py-argcomplete
 DEPENDS+=	${PYPKGPREFIX}-xmltodict-[0-9]*:../../textproc/py-xmltodict
 DEPENDS+=	${PYPKGPREFIX}-yaml-[0-9]*:../../textproc/py-yaml
 DEPENDS+=	${PYPKGPREFIX}-toml-[0-9]*:../../textproc/py-toml
