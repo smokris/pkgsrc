@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.629 2022/02/11 12:08:48 pho Exp $
+# $NetBSD: Makefile,v 1.636 2022/02/23 16:58:43 pho Exp $
 #
 
 COMMENT=	Programming languages
@@ -40,6 +40,7 @@ SUBDIR+=	coq
 SUBDIR+=	cparser
 SUBDIR+=	csmith
 SUBDIR+=	cu-prolog
+SUBDIR+=	dhall
 SUBDIR+=	duktape
 SUBDIR+=	eag
 SUBDIR+=	ecl
@@ -110,7 +111,10 @@ SUBDIR+=	hs-hslua-core
 SUBDIR+=	hs-hslua-marshalling
 SUBDIR+=	hs-hslua-objectorientation
 SUBDIR+=	hs-hslua-packaging
+SUBDIR+=	hs-language-javascript
 SUBDIR+=	hs-lua
+SUBDIR+=	hs-purescript-cst
+SUBDIR+=	hs-sourcemap
 SUBDIR+=	hugs
 SUBDIR+=	icon
 SUBDIR+=	idris
@@ -203,6 +207,7 @@ SUBDIR+=	php81
 SUBDIR+=	picoc
 SUBDIR+=	pict
 SUBDIR+=	polyml
+SUBDIR+=	purescript
 SUBDIR+=	py-asttokens
 SUBDIR+=	py-basicproperty
 SUBDIR+=	py-byterun
@@ -214,6 +219,8 @@ SUBDIR+=	py-hy
 SUBDIR+=	py-inflect
 SUBDIR+=	py-js2py
 SUBDIR+=	py-jsparser
+SUBDIR+=	py-lark-parser
+SUBDIR+=	py-libcst
 SUBDIR+=	py-lsp-server
 SUBDIR+=	py-mypy
 SUBDIR+=	py-mypy_extensions

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1289 2022/02/21 13:45:48 fcambus Exp $
+# $NetBSD: Makefile,v 1.1293 2022/02/23 16:56:36 pho Exp $
 #
 
 COMMENT=	Text processing utilities (does not include desktop publishing)
@@ -297,10 +297,12 @@ SUBDIR+=	hs-appar
 SUBDIR+=	hs-attoparsec
 SUBDIR+=	hs-blaze-html
 SUBDIR+=	hs-blaze-markup
+SUBDIR+=	hs-boxes
 SUBDIR+=	hs-case-insensitive
 SUBDIR+=	hs-cassava
 SUBDIR+=	hs-cassava-megaparsec
 SUBDIR+=	hs-cgrep
+SUBDIR+=	hs-charset
 SUBDIR+=	hs-cheapskate
 SUBDIR+=	hs-citeproc
 SUBDIR+=	hs-cmark-gfm
@@ -326,6 +328,7 @@ SUBDIR+=	hs-libyaml
 SUBDIR+=	hs-lucid
 SUBDIR+=	hs-megaparsec
 SUBDIR+=	hs-pandoc-types
+SUBDIR+=	hs-parsers
 SUBDIR+=	hs-polyparse
 SUBDIR+=	hs-prettyprinter
 SUBDIR+=	hs-prettyprinter-ansi-terminal
@@ -343,6 +346,7 @@ SUBDIR+=	hs-skylighting-core
 SUBDIR+=	hs-stringsearch
 SUBDIR+=	hs-tagsoup
 SUBDIR+=	hs-texmath
+SUBDIR+=	hs-text-manipulate
 SUBDIR+=	hs-text-short
 SUBDIR+=	hs-unicode-collation
 SUBDIR+=	hs-unicode-data
