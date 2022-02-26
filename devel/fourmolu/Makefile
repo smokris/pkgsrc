@@ -1,12 +1,17 @@
-# $NetBSD: Makefile,v 1.1 2022/02/16 10:21:51 pho Exp $
+# $NetBSD: Makefile,v 1.3 2022/02/26 08:30:14 pho Exp $
 
 DISTNAME=	fourmolu-0.5.0.1
 PKGNAME=	${DISTNAME}
+PKGREVISION=	2
 CATEGORIES=	devel
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 COMMENT=	Formatter for Haskell source code
 LICENSE=	modified-bsd
+
+# fourmolu is built with optparse-applicative, and can generate shell
+# completion scripts automatically.
+.include "../../devel/hs-optparse-applicative/application.mk"
 
 # lib:fourmolu
 .include "../../converters/hs-aeson/buildlink3.mk"
@@ -20,7 +25,6 @@ LICENSE=	modified-bsd
 
 # exe:fourmolu
 .include "../../devel/hs-gitrev/buildlink3.mk"
-.include "../../devel/hs-optparse-applicative/buildlink3.mk"
 
 .include "../../mk/haskell.mk"
 .include "../../mk/bsd.pkg.mk"

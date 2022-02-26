@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.3695 2022/02/24 01:27:08 pho Exp $
+# $NetBSD: Makefile,v 1.3698 2022/02/26 12:30:18 pho Exp $
 #
 
 COMMENT=	Development utilities
@@ -544,6 +544,7 @@ SUBDIR+=	hs-dlist
 SUBDIR+=	hs-dlist-instances
 SUBDIR+=	hs-echo
 SUBDIR+=	hs-either
+SUBDIR+=	hs-enclosed-exceptions
 SUBDIR+=	hs-errors
 SUBDIR+=	hs-extensible-exceptions
 SUBDIR+=	hs-fail
@@ -578,6 +579,7 @@ SUBDIR+=	hs-heapsize
 SUBDIR+=	hs-hie-bios
 SUBDIR+=	hs-hie-compat
 SUBDIR+=	hs-hiedb
+SUBDIR+=	hs-hinotify
 SUBDIR+=	hs-hint
 SUBDIR+=	hs-hls-alternate-number-format-plugin
 SUBDIR+=	hs-hls-call-hierarchy-plugin
@@ -661,6 +663,7 @@ SUBDIR+=	hs-semialign
 SUBDIR+=	hs-semver-range
 SUBDIR+=	hs-serialise
 SUBDIR+=	hs-setlocale
+SUBDIR+=	hs-shelly
 SUBDIR+=	hs-some
 SUBDIR+=	hs-sorted-list
 SUBDIR+=	hs-split
