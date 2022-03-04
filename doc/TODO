@@ -1,4 +1,4 @@
-$NetBSD: TODO,v 1.21569 2022/03/03 12:01:19 wiz Exp $
+$NetBSD: TODO,v 1.21572 2022/03/04 13:56:07 ryoon Exp $
 
 Suggested new packages
 ======================
@@ -624,7 +624,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o dmalloc-5.6.5
 	o dnsbl-milter-6.78
 	o doclifter-2.19
-	o dosbox-x-0.83.12
 	o drawpile-2.1.20
 	o drivel-3.0.5
 	o drupal-9.2.2
@@ -1480,7 +1479,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o prelude-manager-3.1.0
 	o prison-5.81.0
 	o privoxy-3.0.33
-	o profanity-0.10.0
 	o profit-2.5.3
 	o proj-8.0.0
 	o ps2eps-1.70
@@ -1839,7 +1837,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o xmbdfed-4.6
 	o xmcd-3.3.2
 	o xml2-0.5
-	o xmlsec1-1.2.32
 	o xmltoman-0.6
 	o xmltooling-2.6.0
 	o xmms-crossfade-0.3.14

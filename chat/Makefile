@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.268 2022/02/13 13:11:02 js Exp $
+# $NetBSD: Makefile,v 1.270 2022/03/04 10:09:14 nia Exp $
 #
 
 COMMENT=	Communication programs
@@ -14,6 +14,7 @@ SUBDIR+=	bitlbee-mastodon
 SUBDIR+=	bitlbee-steam
 SUBDIR+=	bnc
 SUBDIR+=	carbons-purple
+SUBDIR+=	catgirl
 SUBDIR+=	centerim
 SUBDIR+=	centerim5
 SUBDIR+=	cgiirc
@@ -148,6 +149,7 @@ SUBDIR+=	tkirc2
 SUBDIR+=	tootstream
 SUBDIR+=	toxcore
 SUBDIR+=	unrealircd
+SUBDIR+=	unrealircd6
 SUBDIR+=	weechat
 SUBDIR+=	xaric
 SUBDIR+=	ysm
