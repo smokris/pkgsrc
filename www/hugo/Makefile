@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.53 2022/02/13 19:24:26 bsiegert Exp $
+# $NetBSD: Makefile,v 1.56 2022/03/07 09:14:13 bsiegert Exp $
 
-DISTNAME=	hugo-0.87.0
+DISTNAME=	hugo-0.93.2
 PKGNAME=	go-${DISTNAME}
-PKGREVISION=	6
+PKGREVISION=	2
 MASTER_SITES=	${MASTER_SITE_GITHUB:=gohugoio/}
 CATEGORIES=	www
 GITHUB_TAG=	v${PKGVERSION_NOREV}
@@ -13,7 +13,12 @@ HOMEPAGE=	https://gohugo.io/
 COMMENT=	Fast & Modern Static Website Engine
 LICENSE=	apache-2.0
 
-GO_BUILD_PATTERN=
+GO_BUILD_PATTERN=	-tags "extended"
+
+MAKE_ENV+=	"CGO_ENABLED=1"
+MAKE_ENV+=	"CGO_LDFLAGS=-lm"
+USE_LANGUAGES+=	c c++
+LIBS+=		-lm
 
 .include "go-modules.mk"
 
