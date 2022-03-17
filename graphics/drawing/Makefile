@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.5 2021/08/13 12:08:58 nia Exp $
+# $NetBSD: Makefile,v 1.7 2022/03/12 08:01:49 nia Exp $
 
 DISTNAME=	drawing-0.8.3
 CATEGORIES=	graphics gnome
@@ -15,17 +15,11 @@ DEPENDS+=	gtk3+-[0-9]*:../../x11/gtk3
 
 USE_TOOLS+=	pkg-config msgfmt xgettext
 
-.include "../../mk/bsd.prefs.mk"
-
-# XXX: msgfmt: unknown option -- desktop
-.if ${OPSYS} == "NetBSD"
-TOOLS_PLATFORM.msgfmt=
-.endif
-
 # Uses python3 command
 PYTHON_VERSIONS_INCOMPATIBLE=	27
 
 .include "../../devel/meson/build.mk"
+.include "../../devel/gettext-tools/msgfmt-desktop.mk"
 .include "../../devel/glib2/schemas.mk"
 .include "../../graphics/hicolor-icon-theme/buildlink3.mk"
 .include "../../lang/python/tool.mk"

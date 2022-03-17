@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.25 2021/12/08 16:05:14 adam Exp $
+# $NetBSD: Makefile,v 1.27 2022/03/12 08:01:50 nia Exp $
 
 DISTNAME=	ibus-libpinyin-1.12.0
 PKGREVISION=	2
@@ -28,11 +28,6 @@ PLIST_SUBST+=			PYVERSION_DIGIT=${PYVERSION_DIGIT}
 .  include "../../devel/libuuid/buildlink3.mk"
 .endif
 
-# msgfmt: unknown option -- desktop
-.if ${OPSYS} == "NetBSD"
-TOOLS_PLATFORM.msgfmt=
-.endif
-
 .if (!empty(PKGSRC_COMPILER:Mgcc) && !empty(CC_VERSION:Mgcc-4.[4-9]*)) || !empty(PKGSRC_COMPILER:Mclang)
 CONFIGURE_ARGS+=	--disable-boost
 .else
@@ -43,6 +38,7 @@ CONFIGURE_ARGS+=	--with-boost=${BUILDLINK_PREFIX.boost-headers}
 
 .include "../../devel/glib2/schemas.mk"
 .include "../../devel/gettext-lib/buildlink3.mk"
+.include "../../devel/gettext-tools/msgfmt-desktop.mk"
 .include "../../databases/sqlite3/buildlink3.mk"
 .include "../../inputmethod/ibus/buildlink3.mk"
 .include "../../textproc/libpinyin/buildlink3.mk"

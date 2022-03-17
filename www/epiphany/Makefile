@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.207 2022/03/10 21:28:03 prlw1 Exp $
+# $NetBSD: Makefile,v 1.209 2022/03/12 08:01:52 nia Exp $
 
 DISTNAME=	epiphany-40.6
 CATEGORIES=	www gnome
@@ -20,11 +20,9 @@ LDFLAGS+=	${COMPILER_RPATH_FLAG}${PREFIX}/lib/epiphany
 
 PYTHON_FOR_BUILD_ONLY=	tool
 
-# XXX msgfmt: unknown option -- desktop
-_TOOLS_USE_PKGSRC.msgfmt=	yes
-
 .include "../../devel/meson/build.mk"
 .include "../../archivers/libarchive/buildlink3.mk"
+.include "../../devel/gettext-tools/msgfmt-desktop.mk"
 BUILDLINK_API_DEPENDS.glib2+=	glib2>=2.64.0
 .include "../../devel/glib2/schemas.mk"
 BUILDLINK_API_DEPENDS.libdazzle+=	libdazzle>=3.37.1

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.72 2021/12/08 16:05:49 adam Exp $
+# $NetBSD: Makefile,v 1.74 2022/03/12 08:01:50 nia Exp $
 #
 
 DISTNAME=	HandBrake-1.3.3-source
@@ -51,10 +51,6 @@ USE_TOOLS+=	autoconf automake aclocal autoreconf m4
 USE_LIBTOOL=	yes
 USE_LANGUAGES=	c c++
 
-TOOL_DEPENDS+=			gettext-tools-[0-9]*:../../devel/gettext-tools
-_TOOLS_USE_PKGSRC.msgfmt=	yes
-USE_BUILTIN.gettext=		no
-
 BUILDLINK_TRANSFORM.NetBSD+=	rm:-ldl
 
 CONFIGURE_ARGS+=	--prefix=${PREFIX}
@@ -89,6 +85,7 @@ post-extract:
 .include "../../audio/libsamplerate/buildlink3.mk"
 .include "../../audio/speex/buildlink3.mk"
 .include "../../devel/gettext-lib/buildlink3.mk"
+.include "../../devel/gettext-tools/msgfmt-desktop.mk"
 .include "../../multimedia/gstreamer1/buildlink3.mk"
 .include "../../multimedia/libass/buildlink3.mk"
 .include "../../multimedia/libtheora/buildlink3.mk"

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.6 2021/12/08 16:06:44 adam Exp $
+# $NetBSD: Makefile,v 1.8 2022/03/12 08:01:51 nia Exp $
 
 DISTNAME=	gnome-dictionary-3.26.1
 MASTER_SITES=	${MASTER_SITE_GNOME:=sources/${PKGBASE}/${PKGVERSION_NOREV:R}/}
@@ -11,9 +11,6 @@ HOMEPAGE=	https://wiki.gnome.org/Apps/Dictionary
 COMMENT=	GNOME application to look up definitions
 LICENSE=	gnu-gpl-v2
 
-# XXX msgfmt: unknown option -- desktop
-_TOOLS_USE_PKGSRC.msgfmt=	yes
-
 TOOL_DEPENDS+=	docbook-xsl-[0-9]*:../../textproc/docbook-xsl
 TOOL_DEPENDS+=	libxslt-[0-9]*:../../textproc/libxslt
 
@@ -24,6 +21,7 @@ PYTHON_FOR_BUILD_ONLY=	tool
 LDFLAGS.SunOS+=	-lnsl
 
 .include "../../devel/meson/build.mk"
+.include "../../devel/gettext-tools/msgfmt-desktop.mk"
 .include "../../devel/glib2/schemas.mk"
 .include "../../sysutils/desktop-file-utils/desktopdb.mk"
 .include "../../x11/gtk3/buildlink3.mk"

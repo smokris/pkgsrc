@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.39 2022/01/25 19:40:46 wiz Exp $
+# $NetBSD: Makefile,v 1.41 2022/03/12 08:01:51 nia Exp $
 
 DISTNAME=	polkit-0.120
 PKGREVISION=	2
@@ -27,9 +27,6 @@ USE_PKGLOCALEDIR=	yes
 USE_TOOLS+=		pkg-config gmake perl
 USE_TOOLS+=		intltool msgfmt msgmerge xgettext
 USE_TOOLS+=		autoconf autoreconf automake
-
-# XXX msgfmt: unknown option -- xml
-_TOOLS_USE_PKGSRC.msgfmt=	yes
 
 # configure: error: *** A compiler with support for C++17 language features is required.
 GCC_REQD+=	7
@@ -85,6 +82,7 @@ pre-configure:
 
 .include "../../lang/libduktape/buildlink3.mk"
 .include "../../devel/gettext-lib/buildlink3.mk"
+.include "../../devel/gettext-tools/msgfmt-desktop.mk"
 .include "../../devel/glib2/buildlink3.mk"
 .include "../../textproc/expat/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

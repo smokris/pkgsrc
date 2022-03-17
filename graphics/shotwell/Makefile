@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.125 2021/12/08 16:05:06 adam Exp $
+# $NetBSD: Makefile,v 1.127 2022/03/13 04:29:25 gutteridge Exp $
 
 DISTNAME=	shotwell-0.30.8
 PKGREVISION=	18
@@ -18,10 +18,8 @@ MESON_ARGS+=	-Dudev=false
 # uses python3
 PYTHON_VERSIONS_INCOMPATIBLE=	27
 
-# XXX msgfmt: unknown option -- desktop
-_TOOLS_USE_PKGSRC.msgfmt=	yes
-
 .include "../../devel/meson/build.mk"
+.include "../../devel/gettext-tools/msgfmt-desktop.mk"
 .include "../../devel/glib2/schemas.mk"
 .include "../../devel/libgee/buildlink3.mk"
 .include "../../devel/libgphoto2/buildlink3.mk"
