@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2022,v 1.1500 2022/03/17 12:24:14 adam Exp $
+$NetBSD: CHANGES-2022,v 1.1511 2022/03/19 00:41:24 gutteridge Exp $
 
 Changes to the packages collection and infrastructure in 2022:
 
@@ -1961,8 +1961,8 @@ Changes to the packages collection and infrastructure in 2022:
 	Updated devel/cmake to 3.22.3nb1 [jperkin 2022-03-16]
 	Updated net/bind911 to 9.11.37 [taca 2022-03-17]
 	Updated net/bind916 to 9.16.27 [taca 2022-03-17]
-	Updated www/nginx to 1.20.2nb6 [osa 2022-03-16]
-	Updated www/nginx-devel to 1.21.6nb5 [osa 2022-03-16]
+	Updated www/nginx to 1.20.2nb6 [osa 2022-03-17]
+	Updated www/nginx-devel to 1.21.6nb5 [osa 2022-03-17]
 	Updated net/openvpn to 2.5.6 [adam 2022-03-17]
 	Updated www/py-urllib3 to 1.26.9 [adam 2022-03-17]
 	Updated security/py-josepy to 1.13.0 [adam 2022-03-17]
@@ -1983,3 +1983,17 @@ Changes to the packages collection and infrastructure in 2022:
 	Updated security/py-certbot-dns-route53 to 1.25.0 [adam 2022-03-17]
 	Updated security/py-certbot-dns-sakuracloud to 1.25.0 [adam 2022-03-17]
 	Updated security/py-certbot-nginx to 1.25.0 [adam 2022-03-17]
+	Updated net/py-zeroconf to 0.38.4 [adam 2022-03-17]
+	Updated www/py-curl to 7.45.1 [adam 2022-03-17]
+	Updated net/py-python-socks to 2.0.3 [adam 2022-03-17]
+	Updated www/py-aiohttp-socks to 0.7.1 [adam 2022-03-17]
+	Updated www/py-httpx-socks to 0.7.3 [adam 2022-03-17]
+	Updated biology/hisat2 to 2.2.1 [bacon 2022-03-17]
+	Updated security/gnutls to 3.7.4 [adam 2022-03-17]
+	Updated textproc/ugrep to 3.7.6 [adam 2022-03-17]
+	Updated geography/qgis to 3.22.4 [gdt 2022-03-17]
+	Updated biology/stacks to 2.60 [bacon 2022-03-17]
+	Updated chat/matrix-synapse to 1.54.0 [gdt 2022-03-18]
+	Updated lang/php80 to 8.0.17 [taca 2022-03-18]
+	Updated lang/php81 to 8.1.4 [taca 2022-03-18]
+	Updated graphics/librsvg to 2.52.8 [gutteridge 2022-03-19]
