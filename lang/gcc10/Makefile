@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.15 2022/03/10 16:43:11 nia Exp $
+# $NetBSD: Makefile,v 1.17 2022/03/27 17:01:30 tnn Exp $
 
 GCC_PKGNAME=		gcc10
 PKGREVISION=		1
@@ -108,8 +108,9 @@ CONFIGURE_ARGS+=	--enable-long-long
 CONFIGURE_ARGS+=	--with-local-prefix=${GCC_PREFIX:Q}
 CONFIGURE_ARGS+=	--enable-threads=posix
 CONFIGURE_ARGS+=	--with-boot-ldflags=${BOOT_LDFLAGS:Q}
-CONFIGURE_ARGS+=	--with-system-zlib
 CONFIGURE_ARGS+=	--without-zstd
+# causes build errors even when using lang/gcc10 to self-host.
+CONFIGURE_ARGS.SunOS+=	--disable-libsanitizer
 # multilib on Darwin requires fat-binaries
 CONFIGURE_ARGS.Darwin+=	--disable-multilib
 .if !empty(OSX_SDK_PATH)
@@ -199,7 +200,14 @@ GENERATE_PLIST+= \
 	cd ${DESTDIR}${PREFIX} && \
 	${FIND} ${GCC_SUBPREFIX} \( -type f -o -type l \) -print | ${SORT};
 
-.include "../../devel/zlib/buildlink3.mk"
+CHECK_BUILTIN.zlib:= yes
+.include "../../devel/zlib/builtin.mk"
+CHECK_BUILTIN.zlib:= no
+.if !empty(USE_BUILTIN.zlib:M[yY][eE][sS])
+CONFIGURE_ARGS+=	--with-system-zlib
+.else
+CONFIGURE_ARGS+=	--without-system-zlib
+.endif
 .include "../../mk/dlopen.buildlink3.mk"
 .include "../../mk/pthread.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"
