@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2022,v 1.1599 2022/03/30 13:56:24 wiz Exp $
+$NetBSD: CHANGES-2022,v 1.1619 2022/03/31 18:27:41 adam Exp $
 
 Changes to the packages collection and infrastructure in 2022:
 
@@ -2102,3 +2102,31 @@ Changes to the packages collection and infrastructure in 2022:
 	Updated security/tor-browser-https-everywhere to 2022.3.24 [wiz 2022-03-30]
 	Updated lang/vala to 0.56.0 [wiz 2022-03-30]
 	Added fonts/selawik-ttf version 1.01 [wiz 2022-03-30]
+	Added print/tex-regexpatch version 0.2f [micha 2022-03-30]
+	Updated sysutils/onefetch to 2.12.0 [pin 2022-03-30]
+	Updated sysutils/felix to 0.5.1 [pin 2022-03-30]
+	Updated geography/echomap to 0.7.1 [pin 2022-03-30]
+	Added print/tex-regexpatch-doc version 0.2f [micha 2022-03-30]
+	Updated x11/alacritty to 0.10.1 [pin 2022-03-30]
+	Updated devel/doxygen to 1.9.3 [micha 2022-03-30]
+	Updated x11/libXvMC to 1.0.13 [wiz 2022-03-30]
+	Updated x11/libX11 to 1.7.4 [wiz 2022-03-30]
+	Updated finance/py-stripe to 2.70.0 [adam 2022-03-31]
+	Updated devel/py-click to 8.1.1 [adam 2022-03-31]
+	Updated devel/py-pybind11 to 2.9.2 [adam 2022-03-31]
+	Updated lang/py-mypy to 0.942 [adam 2022-03-31]
+	Updated textproc/py-tomli to 2.0.1 [adam 2022-03-31]
+	Updated devel/py-wrapt to 1.14.0 [adam 2022-03-31]
+	Removed devel/SDL-intro-en [nia 2022-03-31]
+	Removed devel/SDL-intro-ko [nia 2022-03-31]
+	Removed databases/virtuoso [nia 2022-03-31]
+	Updated devel/yarn to 1.22.18 [adam 2022-03-31]
+	Updated devel/py-test-asyncio to 0.18.3 [adam 2022-03-31]
+	Updated devel/glib2 to 2.70.5 [adam 2022-03-31]
+	Updated devel/glib2-tools to 2.70.5 [adam 2022-03-31]
+	Updated devel/gdbus-codegen to 2.70.5 [adam 2022-03-31]
+	Updated www/zola to 0.15.3nb1 [nikita 2022-03-31]
+	Updated wm/obconf-qt to 0.16.2 [gutteridge 2022-03-31]
+	Updated devel/nss to 3.77 [wiz 2022-03-31]
+	Updated devel/py-ipython to 8.2.0 [adam 2022-03-31]
+	Updated devel/py-ipykernel to 6.11.0 [adam 2022-03-31]

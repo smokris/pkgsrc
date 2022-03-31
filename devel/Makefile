@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.3701 2022/03/28 15:59:03 schmonz Exp $
+# $NetBSD: Makefile,v 1.3703 2022/03/31 09:01:04 nia Exp $
 #
 
 COMMENT=	Development utilities
@@ -100,8 +100,6 @@ SUBDIR+=	RBTools
 SUBDIR+=	RE-flex
 SUBDIR+=	Renaissance
 SUBDIR+=	SDL
-SUBDIR+=	SDL-intro-en
-SUBDIR+=	SDL-intro-ko
 SUBDIR+=	SDL2
 SUBDIR+=	SDL_Pango
 SUBDIR+=	SDL_gfx
@@ -3163,6 +3161,7 @@ SUBDIR+=	sgb
 SUBDIR+=	shtk
 SUBDIR+=	shunit2
 SUBDIR+=	silc-toolkit
+SUBDIR+=	simde
 SUBDIR+=	skalibs
 SUBDIR+=	slib
 SUBDIR+=	slibtool
